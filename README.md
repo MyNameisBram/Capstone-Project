@@ -60,7 +60,7 @@ We want to see if there are any features that influence `Paid` heavily. As the h
 
 #### Are the numerical features evenly distributed? 
 
-**Checking our numerical feature(s) distribution: Payers vs. Non-Payer**: As the image shows below, our numerical feature(s) distribution between payers and non-payers look very similar. We predict 
+**Checking our numerical feature(s) distribution: Payers vs. Non-Payer**: As the image shows below, our numerical feature(s) distribution between payers and non-payers look very similar. 
 
 <img src= 'img_pay_non_dist.png'>
 
