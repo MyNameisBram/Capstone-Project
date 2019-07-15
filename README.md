@@ -65,9 +65,9 @@ We want to see if there are any features that influence `Paid` heavily. As the h
 <img src= 'img_pay_non_dist.png'>
 
 ### Summary: 
-- Our data is highly imbalance between payers and non-payers. 
-- Our distribution of features between the two classes are pretty even. 
-- There really isn't any one feature that correlates with our target. 
+- Our data is highly imbalanced between payers and non-payers. 
+- Our distribution of features between the two classes (Payer and Non-Payer) are pretty even. 
+- There really isn't any one feature that correlates highly with our target. 
 
 From our initial EDA, we concluded that our features, has no direct correlations with our target variable. We predicted this might be the case due to our heavily imbalanced data.
 
@@ -94,7 +94,7 @@ Here we'll be using some unsupervised algorithms in attempt to reduce dimensiona
 - Truncated Singular Value Decomposition (SVD): Similar to PCA, but the factorization is done on the data matrix vs. PCA, where factorization is done on the covariance matrix.
 
 ### Summary: 
-- Even after balancing our data, the algorithms failed to accurately cluster the cases (payers vs. non-payers) 
+- Even after balancing our data, the algorithms failed to accurately cluster the classes (payers vs. non-payers) 
 - This gives us an indication that further predictive models will perform poorly in identifying the classes. 
 
 #### Imbalanced Dataset Clustering:
