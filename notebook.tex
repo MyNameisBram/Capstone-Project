@@ -1,0 +1,2017 @@
+
+% Default to the notebook output style
+
+    
+
+
+% Inherit from the specified cell style.
+
+
+
+
+    
+\documentclass[11pt]{article}
+
+    
+    
+    \usepackage[T1]{fontenc}
+    % Nicer default font (+ math font) than Computer Modern for most use cases
+    \usepackage{mathpazo}
+
+    % Basic figure setup, for now with no caption control since it's done
+    % automatically by Pandoc (which extracts ![](path) syntax from Markdown).
+    \usepackage{graphicx}
+    % We will generate all images so they have a width \maxwidth. This means
+    % that they will get their normal width if they fit onto the page, but
+    % are scaled down if they would overflow the margins.
+    \makeatletter
+    \def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth
+    \else\Gin@nat@width\fi}
+    \makeatother
+    \let\Oldincludegraphics\includegraphics
+    % Set max figure width to be 80% of text width, for now hardcoded.
+    \renewcommand{\includegraphics}[1]{\Oldincludegraphics[width=.8\maxwidth]{#1}}
+    % Ensure that by default, figures have no caption (until we provide a
+    % proper Figure object with a Caption API and a way to capture that
+    % in the conversion process - todo).
+    \usepackage{caption}
+    \DeclareCaptionLabelFormat{nolabel}{}
+    \captionsetup{labelformat=nolabel}
+
+    \usepackage{adjustbox} % Used to constrain images to a maximum size 
+    \usepackage{xcolor} % Allow colors to be defined
+    \usepackage{enumerate} % Needed for markdown enumerations to work
+    \usepackage{geometry} % Used to adjust the document margins
+    \usepackage{amsmath} % Equations
+    \usepackage{amssymb} % Equations
+    \usepackage{textcomp} % defines textquotesingle
+    % Hack from http://tex.stackexchange.com/a/47451/13684:
+    \AtBeginDocument{%
+        \def\PYZsq{\textquotesingle}% Upright quotes in Pygmentized code
+    }
+    \usepackage{upquote} % Upright quotes for verbatim code
+    \usepackage{eurosym} % defines \euro
+    \usepackage[mathletters]{ucs} % Extended unicode (utf-8) support
+    \usepackage[utf8x]{inputenc} % Allow utf-8 characters in the tex document
+    \usepackage{fancyvrb} % verbatim replacement that allows latex
+    \usepackage{grffile} % extends the file name processing of package graphics 
+                         % to support a larger range 
+    % The hyperref package gives us a pdf with properly built
+    % internal navigation ('pdf bookmarks' for the table of contents,
+    % internal cross-reference links, web links for URLs, etc.)
+    \usepackage{hyperref}
+    \usepackage{longtable} % longtable support required by pandoc >1.10
+    \usepackage{booktabs}  % table support for pandoc > 1.12.2
+    \usepackage[inline]{enumitem} % IRkernel/repr support (it uses the enumerate* environment)
+    \usepackage[normalem]{ulem} % ulem is needed to support strikethroughs (\sout)
+                                % normalem makes italics be italics, not underlines
+    
+
+    
+    
+    % Colors for the hyperref package
+    \definecolor{urlcolor}{rgb}{0,.145,.698}
+    \definecolor{linkcolor}{rgb}{.71,0.21,0.01}
+    \definecolor{citecolor}{rgb}{.12,.54,.11}
+
+    % ANSI colors
+    \definecolor{ansi-black}{HTML}{3E424D}
+    \definecolor{ansi-black-intense}{HTML}{282C36}
+    \definecolor{ansi-red}{HTML}{E75C58}
+    \definecolor{ansi-red-intense}{HTML}{B22B31}
+    \definecolor{ansi-green}{HTML}{00A250}
+    \definecolor{ansi-green-intense}{HTML}{007427}
+    \definecolor{ansi-yellow}{HTML}{DDB62B}
+    \definecolor{ansi-yellow-intense}{HTML}{B27D12}
+    \definecolor{ansi-blue}{HTML}{208FFB}
+    \definecolor{ansi-blue-intense}{HTML}{0065CA}
+    \definecolor{ansi-magenta}{HTML}{D160C4}
+    \definecolor{ansi-magenta-intense}{HTML}{A03196}
+    \definecolor{ansi-cyan}{HTML}{60C6C8}
+    \definecolor{ansi-cyan-intense}{HTML}{258F8F}
+    \definecolor{ansi-white}{HTML}{C5C1B4}
+    \definecolor{ansi-white-intense}{HTML}{A1A6B2}
+
+    % commands and environments needed by pandoc snippets
+    % extracted from the output of `pandoc -s`
+    \providecommand{\tightlist}{%
+      \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+    \DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+    % Add ',fontsize=\small' for more characters per line
+    \newenvironment{Shaded}{}{}
+    \newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{{#1}}}}
+    \newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.56,0.13,0.00}{{#1}}}
+    \newcommand{\DecValTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\FloatTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\CharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\StringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\CommentTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textit{{#1}}}}
+    \newcommand{\OtherTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{{#1}}}
+    \newcommand{\AlertTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{{#1}}}}
+    \newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.02,0.16,0.49}{{#1}}}
+    \newcommand{\RegionMarkerTok}[1]{{#1}}
+    \newcommand{\ErrorTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{{#1}}}}
+    \newcommand{\NormalTok}[1]{{#1}}
+    
+    % Additional commands for more recent versions of Pandoc
+    \newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.53,0.00,0.00}{{#1}}}
+    \newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.73,0.40,0.53}{{#1}}}
+    \newcommand{\ImportTok}[1]{{#1}}
+    \newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.73,0.13,0.13}{\textit{{#1}}}}
+    \newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\VariableTok}[1]{\textcolor[rgb]{0.10,0.09,0.49}{{#1}}}
+    \newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{{#1}}}}
+    \newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.40,0.40,0.40}{{#1}}}
+    \newcommand{\BuiltInTok}[1]{{#1}}
+    \newcommand{\ExtensionTok}[1]{{#1}}
+    \newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.74,0.48,0.00}{{#1}}}
+    \newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.49,0.56,0.16}{{#1}}}
+    \newcommand{\InformationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\WarningTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    
+    
+    % Define a nice break command that doesn't care if a line doesn't already
+    % exist.
+    \def\br{\hspace*{\fill} \\* }
+    % Math Jax compatability definitions
+    \def\gt{>}
+    \def\lt{<}
+    % Document parameters
+    \title{EDA}
+    
+    
+    
+
+    % Pygments definitions
+    
+\makeatletter
+\def\PY@reset{\let\PY@it=\relax \let\PY@bf=\relax%
+    \let\PY@ul=\relax \let\PY@tc=\relax%
+    \let\PY@bc=\relax \let\PY@ff=\relax}
+\def\PY@tok#1{\csname PY@tok@#1\endcsname}
+\def\PY@toks#1+{\ifx\relax#1\empty\else%
+    \PY@tok{#1}\expandafter\PY@toks\fi}
+\def\PY@do#1{\PY@bc{\PY@tc{\PY@ul{%
+    \PY@it{\PY@bf{\PY@ff{#1}}}}}}}
+\def\PY#1#2{\PY@reset\PY@toks#1+\relax+\PY@do{#2}}
+
+\expandafter\def\csname PY@tok@w\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.73,0.73}{##1}}}
+\expandafter\def\csname PY@tok@c\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.74,0.48,0.00}{##1}}}
+\expandafter\def\csname PY@tok@k\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kt\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.69,0.00,0.25}{##1}}}
+\expandafter\def\csname PY@tok@o\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@ow\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.67,0.13,1.00}{##1}}}
+\expandafter\def\csname PY@tok@nb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nf\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@nc\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@nn\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@ne\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.82,0.25,0.23}{##1}}}
+\expandafter\def\csname PY@tok@nv\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@no\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.53,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nl\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.63,0.63,0.00}{##1}}}
+\expandafter\def\csname PY@tok@ni\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.60,0.60,0.60}{##1}}}
+\expandafter\def\csname PY@tok@na\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.49,0.56,0.16}{##1}}}
+\expandafter\def\csname PY@tok@nt\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nd\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.67,0.13,1.00}{##1}}}
+\expandafter\def\csname PY@tok@s\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sd\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@si\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.53}{##1}}}
+\expandafter\def\csname PY@tok@se\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sr\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.53}{##1}}}
+\expandafter\def\csname PY@tok@ss\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@sx\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@m\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@gh\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@gu\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.50,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@gd\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.63,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@gi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.63,0.00}{##1}}}
+\expandafter\def\csname PY@tok@gr\endcsname{\def\PY@tc##1{\textcolor[rgb]{1.00,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@ge\endcsname{\let\PY@it=\textit}
+\expandafter\def\csname PY@tok@gs\endcsname{\let\PY@bf=\textbf}
+\expandafter\def\csname PY@tok@gp\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@go\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.53,0.53,0.53}{##1}}}
+\expandafter\def\csname PY@tok@gt\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.27,0.87}{##1}}}
+\expandafter\def\csname PY@tok@err\endcsname{\def\PY@bc##1{\setlength{\fboxsep}{0pt}\fcolorbox[rgb]{1.00,0.00,0.00}{1,1,1}{\strut ##1}}}
+\expandafter\def\csname PY@tok@kc\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kd\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kn\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kr\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@bp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@fm\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@vc\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@vg\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@vi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@vm\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@sa\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sc\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@dl\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@s2\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sh\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@s1\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@mb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mf\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mh\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@il\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mo\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@ch\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cm\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cpf\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@c1\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cs\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+
+\def\PYZbs{\char`\\}
+\def\PYZus{\char`\_}
+\def\PYZob{\char`\{}
+\def\PYZcb{\char`\}}
+\def\PYZca{\char`\^}
+\def\PYZam{\char`\&}
+\def\PYZlt{\char`\<}
+\def\PYZgt{\char`\>}
+\def\PYZsh{\char`\#}
+\def\PYZpc{\char`\%}
+\def\PYZdl{\char`\$}
+\def\PYZhy{\char`\-}
+\def\PYZsq{\char`\'}
+\def\PYZdq{\char`\"}
+\def\PYZti{\char`\~}
+% for compatibility with earlier versions
+\def\PYZat{@}
+\def\PYZlb{[}
+\def\PYZrb{]}
+\makeatother
+
+
+    % Exact colors from NB
+    \definecolor{incolor}{rgb}{0.0, 0.0, 0.5}
+    \definecolor{outcolor}{rgb}{0.545, 0.0, 0.0}
+
+
+
+    
+    % Prevent overflowing lines due to hard-to-break entities
+    \sloppy 
+    % Setup hyperref package
+    \hypersetup{
+      breaklinks=true,  % so long urls are correctly broken across lines
+      colorlinks=true,
+      urlcolor=urlcolor,
+      linkcolor=linkcolor,
+      citecolor=citecolor,
+      }
+    % Slightly bigger margins than the latex defaults
+    
+    \geometry{verbose,tmargin=1in,bmargin=1in,lmargin=1in,rmargin=1in}
+    
+    
+
+    \begin{document}
+    
+    
+    \maketitle
+    
+    
+
+    
+    \hypertarget{eda}{%
+\section{EDA}\label{eda}}
+
+    \hypertarget{goal}{%
+\subsection{Goal:}\label{goal}}
+
+Provide insight on the difference's between accounts that paid a balance
+vs.~accounts that did not pay at all.
+
+\hypertarget{data}{%
+\subsubsection{Data:}\label{data}}
+
+\begin{itemize}
+\tightlist
+\item
+  import our cleaned dataset \texttt{Data\_cleaned.csv}
+
+  \begin{itemize}
+  \tightlist
+  \item
+    comprises of the below dataset:
+
+    \begin{itemize}
+    \tightlist
+    \item
+      \texttt{DB\_Accounts\_2012-2015.txt}
+    \item
+      \texttt{DB\_Entities.txt}
+    \item
+      \texttt{DB\_Entities\_Additional.txt}
+    \item
+      \texttt{DB\_Purchases.txt}
+    \item
+      \texttt{DB\_Splits.txt}
+    \item
+      \texttt{uszips.csv}
+    \end{itemize}
+  \end{itemize}
+\end{itemize}
+
+    \hypertarget{obtaining-the-data}{%
+\section{Obtaining the Data}\label{obtaining-the-data}}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}1}]:} \PY{k+kn}{import} \PY{n+nn}{pandas} \PY{k}{as} \PY{n+nn}{pd} 
+        \PY{k+kn}{import} \PY{n+nn}{sys}
+        \PY{k+kn}{import} \PY{n+nn}{pandas\PYZus{}profiling} 
+        \PY{k+kn}{import} \PY{n+nn}{numpy} \PY{k}{as} \PY{n+nn}{np} 
+        \PY{k+kn}{import} \PY{n+nn}{matplotlib}\PY{n+nn}{.}\PY{n+nn}{pyplot} \PY{k}{as} \PY{n+nn}{plt} 
+        \PY{o}{\PYZpc{}}\PY{k}{matplotlib} inline 
+        \PY{k+kn}{import} \PY{n+nn}{warnings}
+        \PY{n}{warnings}\PY{o}{.}\PY{n}{filterwarnings}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{ignore}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}2}]:} \PY{n}{data} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{read\PYZus{}csv}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Data\PYZus{}June24.csv}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}3}]:} \PY{n}{data}\PY{o}{.}\PY{n}{drop}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Unnamed: 0}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{axis}\PY{o}{=}\PY{l+m+mi}{1}\PY{p}{,} \PY{n}{inplace}\PY{o}{=}\PY{k+kc}{True}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}4}]:} \PY{n}{data}\PY{o}{.}\PY{n}{columns}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}4}]:} Index(['Account\_ID', 'Entity\_ID', 'Seller\_Type', 'Creditor\_Name',
+               'Closure\_Type', 'Entity\_City', 'Entity\_State', 'Entity\_Zip',
+               'Median\_Household\_Income', 'Total\_Paid', 'Number\_of\_payments',
+               'Percent\_Paid', 'Invoice\_bal', 'Age', 'Target', 'Income\_level',
+               'Age\_MedIncome', 'Invbal\_MedIncome', 'Invbal\_Age', 'Paid',
+               'unemployment\_rate', 'labor\_force\_participation',
+               'education\_highschool', 'education\_college\_or\_above', 'home\_value',
+               'rent\_burden', 'age\_20s', 'age\_30s', 'age\_40s', 'age\_50s', 'age\_60s',
+               'age\_70s', 'age\_over\_80', 'Age\_range', 'Unemply\_rate\_range',
+               'Labor\_force\_part\_range'],
+              dtype='object')
+\end{Verbatim}
+            
+    \hypertarget{age}{%
+\subsection{\# Age}\label{age}}
+
+    We binned the ages into 16 categories - \texttt{18-21} - \texttt{22-24}
+- \texttt{25-29} - \texttt{30-34} - \texttt{35-39} - \texttt{40-44} -
+\texttt{45-49} - \texttt{50-54} - \texttt{55-59} - \texttt{60-64} -
+\texttt{65-69} - \texttt{70-74} - \texttt{75-79} - \texttt{80-84} -
+\texttt{85-89} - \texttt{90\ and\ above}
+
+    Creating paid and unpaid data set
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}5}]:} \PY{c+c1}{\PYZsh{}creating paid and unpaid dataset}
+        \PY{n}{paid} \PY{o}{=} \PY{n}{data}\PY{p}{[}\PY{p}{(}\PY{n}{data}\PY{o}{.}\PY{n}{Closure\PYZus{}Type} \PY{o}{==} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{SETTLE}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)} \PY{o}{|} \PY{p}{(}\PY{n}{data}\PY{o}{.}\PY{n}{Closure\PYZus{}Type} \PY{o}{==} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{PIF}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}\PY{p}{]}
+        \PY{n}{unpaid} \PY{o}{=} \PY{n}{data}\PY{p}{[}\PY{p}{(}\PY{n}{data}\PY{o}{.}\PY{n}{Closure\PYZus{}Type} \PY{o}{!=} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{SETTLE}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)} \PY{o}{\PYZam{}} \PY{p}{(}\PY{n}{data}\PY{o}{.}\PY{n}{Closure\PYZus{}Type} \PY{o}{!=} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{PIF}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}\PY{p}{]}
+\end{Verbatim}
+
+
+    \hypertarget{sample-questions---of-the-accounts-that-paid}{%
+\subsection{Sample Questions - Of the accounts that
+paid,}\label{sample-questions---of-the-accounts-that-paid}}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  What is the average invoice balance?
+\item
+  What is the average paid amount?
+\item
+  What is the median house hold income?
+\end{enumerate}
+
+\hypertarget{age-specific-questions}{%
+\subsection{Age specific questions:}\label{age-specific-questions}}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Which age range paid the most in terms of dollar amount? and, what is
+  the avg.invoice balance?
+\item
+  Which age range paid the most in terms of percentage, within the
+  category?
+\end{enumerate}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}6}]:} \PY{n}{paid\PYZus{}groupby\PYZus{}age} \PY{o}{=} \PY{n}{paid}\PY{o}{.}\PY{n}{groupby}\PY{p}{(}\PY{n}{by}\PY{o}{=}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Age\PYZus{}range}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{)}
+        \PY{n}{unpaid\PYZus{}groupby\PYZus{}age} \PY{o}{=} \PY{n}{unpaid}\PY{o}{.}\PY{n}{groupby}\PY{p}{(}\PY{n}{by}\PY{o}{=}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Age\PYZus{}range}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{)}
+        \PY{n}{total\PYZus{}groupby\PYZus{}age} \PY{o}{=} \PY{n}{data}\PY{o}{.}\PY{n}{groupby}\PY{p}{(}\PY{n}{by}\PY{o}{=}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Age\PYZus{}range}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}7}]:} \PY{n}{paid\PYZus{}mean} \PY{o}{=} \PY{n}{paid\PYZus{}groupby\PYZus{}age}\PY{o}{.}\PY{n}{mean}\PY{p}{(}\PY{p}{)}
+        \PY{n}{paid\PYZus{}count} \PY{o}{=} \PY{n}{paid\PYZus{}groupby\PYZus{}age}\PY{o}{.}\PY{n}{count}\PY{p}{(}\PY{p}{)}
+        \PY{n}{unpaid\PYZus{}mean} \PY{o}{=} \PY{n}{unpaid\PYZus{}groupby\PYZus{}age}\PY{o}{.}\PY{n}{mean}\PY{p}{(}\PY{p}{)}
+        \PY{n}{unpaid\PYZus{}count} \PY{o}{=} \PY{n}{unpaid\PYZus{}groupby\PYZus{}age}\PY{o}{.}\PY{n}{count}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}8}]:} \PY{c+c1}{\PYZsh{}sort values by age range }
+        \PY{n}{paid\PYZus{}df} \PY{o}{=} \PY{n}{paid}\PY{o}{.}\PY{n}{sort\PYZus{}values}\PY{p}{(}\PY{n}{by}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Age\PYZus{}range}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+        \PY{n}{unpaid\PYZus{}df} \PY{o}{=} \PY{n}{unpaid}\PY{o}{.}\PY{n}{sort\PYZus{}values}\PY{p}{(}\PY{n}{by}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Age\PYZus{}range}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}9}]:} \PY{c+c1}{\PYZsh{}Creating a list with age range labels and values for paid, unpaid and total }
+        \PY{n}{age\PYZus{}range} \PY{o}{=} \PY{n}{paid\PYZus{}df}\PY{o}{.}\PY{n}{Age\PYZus{}range}\PY{o}{.}\PY{n}{unique}\PY{p}{(}\PY{p}{)}
+        
+        \PY{n}{paid\PYZus{}age\PYZus{}range\PYZus{}values} \PY{o}{=}\PY{p}{[}\PY{p}{]}
+        \PY{n}{unpaid\PYZus{}age\PYZus{}range\PYZus{}values} \PY{o}{=} \PY{p}{[}\PY{p}{]}
+        \PY{n}{total\PYZus{}age\PYZus{}range\PYZus{}values} \PY{o}{=} \PY{p}{[}\PY{p}{]}
+        
+        \PY{k}{for} \PY{n}{i} \PY{o+ow}{in} \PY{n}{age\PYZus{}range}\PY{p}{:} 
+            \PY{n}{y} \PY{o}{=} \PY{n+nb}{len}\PY{p}{(}\PY{n}{paid\PYZus{}df}\PY{p}{[}\PY{n}{paid\PYZus{}df}\PY{o}{.}\PY{n}{Age\PYZus{}range} \PY{o}{==} \PY{n}{i}\PY{p}{]}\PY{p}{)}
+            \PY{n}{paid\PYZus{}age\PYZus{}range\PYZus{}values}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{n}{y}\PY{p}{)}
+            
+        \PY{k}{for} \PY{n}{i} \PY{o+ow}{in} \PY{n}{age\PYZus{}range}\PY{p}{:} 
+            \PY{n}{y} \PY{o}{=} \PY{n+nb}{len}\PY{p}{(}\PY{n}{unpaid\PYZus{}df}\PY{p}{[}\PY{n}{unpaid\PYZus{}df}\PY{o}{.}\PY{n}{Age\PYZus{}range} \PY{o}{==} \PY{n}{i}\PY{p}{]}\PY{p}{)}
+            \PY{n}{unpaid\PYZus{}age\PYZus{}range\PYZus{}values}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{n}{y}\PY{p}{)}    
+            
+        \PY{k}{for} \PY{n}{i} \PY{o+ow}{in} \PY{n}{age\PYZus{}range}\PY{p}{:} 
+            \PY{n}{y} \PY{o}{=} \PY{n+nb}{len}\PY{p}{(}\PY{n}{data}\PY{p}{[}\PY{n}{data}\PY{o}{.}\PY{n}{Age\PYZus{}range} \PY{o}{==} \PY{n}{i}\PY{p}{]}\PY{p}{)}
+            \PY{n}{total\PYZus{}age\PYZus{}range\PYZus{}values}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{n}{y}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}10}]:} \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Paid: }\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}\PY{n+nb}{len}\PY{p}{(}\PY{n}{paid\PYZus{}df}\PY{p}{)}\PY{p}{)}
+         \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Total:}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}\PY{n+nb}{len}\PY{p}{(}\PY{n}{data}\PY{p}{)}\PY{p}{)}
+         \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Percentage:}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{p}{(}\PY{n+nb}{round}\PY{p}{(}\PY{p}{(}\PY{n+nb}{len}\PY{p}{(}\PY{n}{paid\PYZus{}df}\PY{p}{)} \PY{o}{/} \PY{n+nb}{len}\PY{p}{(}\PY{n}{data}\PY{p}{)}\PY{p}{)}\PY{o}{*}\PY{l+m+mi}{100} \PY{p}{,}\PY{l+m+mi}{2}\PY{p}{)}\PY{p}{)}\PY{p}{,}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{\PYZpc{}}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+Paid:  556536
+Total: 12713917
+Percentage: 4.38 \%
+
+    \end{Verbatim}
+
+    \hypertarget{quantity-of-accounts-by-age-range}{%
+\subsection{Quantity of Accounts by Age
+Range}\label{quantity-of-accounts-by-age-range}}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}11}]:} \PY{c+c1}{\PYZsh{} Create the plot bars}
+         \PY{c+c1}{\PYZsh{} In x position}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{figure}\PY{p}{(}\PY{n}{figsize}\PY{o}{=}\PY{p}{(}\PY{l+m+mi}{18}\PY{p}{,}\PY{l+m+mi}{10}\PY{p}{)}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{bar}\PY{p}{(}\PY{n}{age\PYZus{}range}\PY{p}{,}
+                 \PY{c+c1}{\PYZsh{} using the data from the mean\PYZus{}values}
+                 \PY{n}{total\PYZus{}age\PYZus{}range\PYZus{}values}\PY{p}{,} 
+                 \PY{c+c1}{\PYZsh{} with a y\PYZhy{}error lines set at variance}
+                 \PY{c+c1}{\PYZsh{}yerr=variance, }
+                 \PY{c+c1}{\PYZsh{} aligned in the center}
+                 \PY{n}{align}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{center}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}
+                 \PY{c+c1}{\PYZsh{} with color}
+                 \PY{n}{color}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{blue}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}
+                 \PY{c+c1}{\PYZsh{} alpha 0.5}
+                 \PY{n}{alpha}\PY{o}{=}\PY{l+m+mf}{0.5}\PY{p}{)}
+         
+         \PY{c+c1}{\PYZsh{} set axes labels and title}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{ylabel}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Number of Total Accounts}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{fontsize}\PY{o}{=}\PY{l+m+mi}{18}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{xticks}\PY{p}{(}\PY{n}{age\PYZus{}range}\PY{p}{,} \PY{n}{fontsize}\PY{o}{=}\PY{l+m+mi}{15}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{yticks}\PY{p}{(}\PY{n}{fontsize}\PY{o}{=}\PY{l+m+mi}{16}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{title}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Quantity of Total Accounts by Age Range}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{fontsize}\PY{o}{=}\PY{l+m+mi}{24}\PY{p}{)}
+         
+         \PY{n}{plt}\PY{o}{.}\PY{n}{show}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_18_0.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}12}]:} \PY{c+c1}{\PYZsh{} Create the plot bars}
+         \PY{c+c1}{\PYZsh{} In x position}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{figure}\PY{p}{(}\PY{n}{figsize}\PY{o}{=}\PY{p}{(}\PY{l+m+mi}{18}\PY{p}{,}\PY{l+m+mi}{10}\PY{p}{)}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{bar}\PY{p}{(}\PY{n}{age\PYZus{}range}\PY{p}{,}
+                 \PY{c+c1}{\PYZsh{} using the data from the mean\PYZus{}values}
+                 \PY{n}{paid\PYZus{}age\PYZus{}range\PYZus{}values}\PY{p}{,} 
+                 \PY{c+c1}{\PYZsh{} with a y\PYZhy{}error lines set at variance}
+                 \PY{c+c1}{\PYZsh{}yerr=variance, }
+                 \PY{c+c1}{\PYZsh{} aligned in the center}
+                 \PY{n}{align}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{center}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}
+                 \PY{c+c1}{\PYZsh{} with color}
+                 \PY{n}{color}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{\PYZsh{}469212ff}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}
+                 \PY{c+c1}{\PYZsh{} alpha 0.5}
+                 \PY{n}{alpha}\PY{o}{=}\PY{l+m+mf}{0.5}\PY{p}{)}
+         
+         \PY{c+c1}{\PYZsh{} set axes labels and title}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{ylabel}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Number of Paid Accounts}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{fontsize}\PY{o}{=}\PY{l+m+mi}{18}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{xticks}\PY{p}{(}\PY{n}{age\PYZus{}range}\PY{p}{,} \PY{n}{fontsize}\PY{o}{=}\PY{l+m+mi}{15}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{yticks}\PY{p}{(}\PY{n}{fontsize}\PY{o}{=}\PY{l+m+mi}{16}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{title}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Quantity of Paid Accounts by Age Range}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{fontsize}\PY{o}{=}\PY{l+m+mi}{24}\PY{p}{)}
+         
+         \PY{n}{plt}\PY{o}{.}\PY{n}{show}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_19_0.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}13}]:} \PY{c+c1}{\PYZsh{} Create the plot bars}
+         \PY{c+c1}{\PYZsh{} In x position}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{figure}\PY{p}{(}\PY{n}{figsize}\PY{o}{=}\PY{p}{(}\PY{l+m+mi}{18}\PY{p}{,}\PY{l+m+mi}{10}\PY{p}{)}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{bar}\PY{p}{(}\PY{n}{age\PYZus{}range}\PY{p}{,}
+                 \PY{c+c1}{\PYZsh{} using the data from the mean\PYZus{}values}
+                 \PY{n}{unpaid\PYZus{}age\PYZus{}range\PYZus{}values}\PY{p}{,} 
+                 \PY{c+c1}{\PYZsh{} with a y\PYZhy{}error lines set at variance}
+                 \PY{c+c1}{\PYZsh{}yerr=variance, }
+                 \PY{c+c1}{\PYZsh{} aligned in the center}
+                 \PY{n}{align}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{center}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}
+                 \PY{c+c1}{\PYZsh{} with color}
+                 \PY{n}{color}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{\PYZsh{}b0450cff}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}
+                 \PY{c+c1}{\PYZsh{} alpha 0.5}
+                 \PY{n}{alpha}\PY{o}{=}\PY{l+m+mf}{0.5}\PY{p}{)}
+         
+         \PY{c+c1}{\PYZsh{} set axes labels and title}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{ylabel}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Number of Unpaid Accounts}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{fontsize}\PY{o}{=}\PY{l+m+mi}{18}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{xticks}\PY{p}{(}\PY{n}{age\PYZus{}range}\PY{p}{,} \PY{n}{fontsize}\PY{o}{=}\PY{l+m+mi}{15}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{yticks}\PY{p}{(}\PY{n}{fontsize}\PY{o}{=}\PY{l+m+mi}{16}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{title}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Quantity of Unpaid Accounts by Age Range}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{fontsize}\PY{o}{=}\PY{l+m+mi}{24}\PY{p}{)}
+         
+         \PY{n}{plt}\PY{o}{.}\PY{n}{show}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_20_0.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}14}]:} \PY{n}{a} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{array}\PY{p}{(}\PY{n}{paid\PYZus{}age\PYZus{}range\PYZus{}values}\PY{p}{)}
+         \PY{n}{b} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{array}\PY{p}{(}\PY{n}{total\PYZus{}age\PYZus{}range\PYZus{}values}\PY{p}{)}
+         \PY{n}{percent\PYZus{}paid} \PY{o}{=} \PY{n}{a} \PY{o}{/} \PY{n}{b}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}15}]:} \PY{c+c1}{\PYZsh{} Create the plot bars}
+         \PY{c+c1}{\PYZsh{} In x position}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{figure}\PY{p}{(}\PY{n}{figsize}\PY{o}{=}\PY{p}{(}\PY{l+m+mi}{18}\PY{p}{,}\PY{l+m+mi}{10}\PY{p}{)}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{bar}\PY{p}{(}\PY{n}{age\PYZus{}range}\PY{p}{,}
+                 \PY{c+c1}{\PYZsh{} using the data from the mean\PYZus{}values}
+                 \PY{n}{percent\PYZus{}paid}\PY{p}{,} 
+                 \PY{c+c1}{\PYZsh{} with a y\PYZhy{}error lines set at variance}
+                 \PY{c+c1}{\PYZsh{}yerr=variance, }
+                 \PY{c+c1}{\PYZsh{} aligned in the center}
+                 \PY{n}{align}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{center}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}
+                 \PY{c+c1}{\PYZsh{} with color}
+                 \PY{n}{color}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{orange}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}
+                 \PY{c+c1}{\PYZsh{} alpha 0.5}
+                 \PY{n}{alpha}\PY{o}{=}\PY{l+m+mf}{0.5}\PY{p}{)}
+         
+         \PY{c+c1}{\PYZsh{} set axes labels and title}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{ylabel}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Percent of Total Accounts}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{fontsize}\PY{o}{=}\PY{l+m+mi}{18}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{xticks}\PY{p}{(}\PY{n}{age\PYZus{}range}\PY{p}{,} \PY{n}{fontsize}\PY{o}{=}\PY{l+m+mi}{15}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{yticks}\PY{p}{(}\PY{n}{fontsize}\PY{o}{=}\PY{l+m+mi}{16}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{title}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Percent Paid from Total Accounts by Age Range}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{fontsize}\PY{o}{=}\PY{l+m+mi}{24}\PY{p}{)}
+         
+         \PY{n}{plt}\PY{o}{.}\PY{n}{show}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_22_0.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \hypertarget{what-is-the-average-balance-of-total-accounts}{%
+\subsubsection{What is the average balance of total
+accounts?}\label{what-is-the-average-balance-of-total-accounts}}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}16}]:} \PY{n}{plt}\PY{o}{.}\PY{n}{figure}\PY{p}{(}\PY{n}{figsize}\PY{o}{=}\PY{p}{(}\PY{l+m+mi}{18}\PY{p}{,}\PY{l+m+mi}{10}\PY{p}{)}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{bar}\PY{p}{(}\PY{n}{age\PYZus{}range}\PY{p}{,}
+                 \PY{c+c1}{\PYZsh{} using the data from the mean\PYZus{}values}
+                 \PY{n}{total\PYZus{}groupby\PYZus{}age}\PY{o}{.}\PY{n}{Invoice\PYZus{}bal}\PY{o}{.}\PY{n}{mean}\PY{p}{(}\PY{p}{)}\PY{p}{,} 
+                 \PY{c+c1}{\PYZsh{} with a y\PYZhy{}error lines set at variance}
+                 \PY{c+c1}{\PYZsh{}yerr=variance, }
+                 \PY{c+c1}{\PYZsh{} aligned in the center}
+                 \PY{n}{align}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{center}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}
+                 \PY{c+c1}{\PYZsh{} with color}
+                 \PY{n}{color}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{\PYZsh{}311C40}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}
+                 \PY{c+c1}{\PYZsh{} alpha 0.5}
+                 \PY{n}{alpha}\PY{o}{=}\PY{l+m+mi}{1}\PY{p}{)}
+         
+         \PY{c+c1}{\PYZsh{} set axes labels and title}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{ylabel}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Avg. Invoice Balance}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{fontsize}\PY{o}{=}\PY{l+m+mi}{18}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{xticks}\PY{p}{(}\PY{n}{age\PYZus{}range}\PY{p}{,} \PY{n}{fontsize}\PY{o}{=}\PY{l+m+mi}{15}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{yticks}\PY{p}{(}\PY{n}{fontsize}\PY{o}{=}\PY{l+m+mi}{16}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{title}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Avg. Invoice Balance by Age Range}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{fontsize}\PY{o}{=}\PY{l+m+mi}{24}\PY{p}{)}
+         
+         \PY{n}{plt}\PY{o}{.}\PY{n}{show}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_24_0.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \hypertarget{what-is-the-average-balance-of-paid-accounts}{%
+\subsubsection{What is the average balance of paid
+accounts?}\label{what-is-the-average-balance-of-paid-accounts}}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}17}]:} \PY{n}{plt}\PY{o}{.}\PY{n}{figure}\PY{p}{(}\PY{n}{figsize}\PY{o}{=}\PY{p}{(}\PY{l+m+mi}{18}\PY{p}{,}\PY{l+m+mi}{10}\PY{p}{)}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{bar}\PY{p}{(}\PY{n}{age\PYZus{}range}\PY{p}{,}
+                 \PY{c+c1}{\PYZsh{} using the data from the mean\PYZus{}values}
+                 \PY{n}{paid\PYZus{}groupby\PYZus{}age}\PY{o}{.}\PY{n}{Invoice\PYZus{}bal}\PY{o}{.}\PY{n}{mean}\PY{p}{(}\PY{p}{)}\PY{p}{,} 
+                 \PY{c+c1}{\PYZsh{} with a y\PYZhy{}error lines set at variance}
+                 \PY{c+c1}{\PYZsh{}yerr=variance, }
+                 \PY{c+c1}{\PYZsh{} aligned in the center}
+                 \PY{n}{align}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{center}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}
+                 \PY{c+c1}{\PYZsh{} with color}
+                 \PY{n}{color}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{\PYZsh{}311C40}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}
+                 \PY{c+c1}{\PYZsh{} alpha 0.5}
+                 \PY{n}{alpha}\PY{o}{=}\PY{l+m+mf}{0.5}\PY{p}{)}
+         
+         \PY{c+c1}{\PYZsh{} set axes labels and title}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{ylabel}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Avg. Invoice Balance}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{fontsize}\PY{o}{=}\PY{l+m+mi}{18}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{xticks}\PY{p}{(}\PY{n}{age\PYZus{}range}\PY{p}{,} \PY{n}{fontsize}\PY{o}{=}\PY{l+m+mi}{15}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{yticks}\PY{p}{(}\PY{n}{fontsize}\PY{o}{=}\PY{l+m+mi}{16}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{title}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Avg. Invoice Balance by Age Range of Accounts that Paid}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{fontsize}\PY{o}{=}\PY{l+m+mi}{24}\PY{p}{)}
+         
+         \PY{n}{plt}\PY{o}{.}\PY{n}{show}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_26_0.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}18}]:} \PY{n}{paid\PYZus{}groupby\PYZus{}age}\PY{o}{.}\PY{n}{Invoice\PYZus{}bal}\PY{o}{.}\PY{n}{mean}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}18}]:} Age\_range
+         18-21    367.808926
+         22-24    440.061448
+         25-29    463.822052
+         30-34    486.165538
+         35-39    452.474194
+         40-44    415.647792
+         45-49    385.149534
+         50-54    398.281497
+         55-59    404.093570
+         60-64    405.222629
+         65-69    406.459812
+         70-74    397.205118
+         75-79    331.082734
+         80-84    285.568004
+         85-89    291.052578
+         90 +     324.208476
+         Name: Invoice\_bal, dtype: float64
+\end{Verbatim}
+            
+    \hypertarget{what-is-the-average-collected-within-the-age-range}{%
+\subsubsection{What is the average collected within the age
+range?}\label{what-is-the-average-collected-within-the-age-range}}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}19}]:} \PY{n}{plt}\PY{o}{.}\PY{n}{figure}\PY{p}{(}\PY{n}{figsize}\PY{o}{=}\PY{p}{(}\PY{l+m+mi}{18}\PY{p}{,}\PY{l+m+mi}{10}\PY{p}{)}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{bar}\PY{p}{(}\PY{n}{age\PYZus{}range}\PY{p}{,}
+                 \PY{c+c1}{\PYZsh{} using the data from the mean\PYZus{}values}
+                 \PY{n}{paid\PYZus{}groupby\PYZus{}age}\PY{o}{.}\PY{n}{Total\PYZus{}Paid}\PY{o}{.}\PY{n}{mean}\PY{p}{(}\PY{p}{)}\PY{p}{,} 
+                 \PY{c+c1}{\PYZsh{} with a y\PYZhy{}error lines set at variance}
+                 \PY{c+c1}{\PYZsh{}yerr=variance, }
+                 \PY{c+c1}{\PYZsh{} aligned in the center}
+                 \PY{n}{align}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{center}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}
+                 \PY{c+c1}{\PYZsh{} with color}
+                 \PY{n}{color}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{\PYZsh{}311C40}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}
+                 \PY{c+c1}{\PYZsh{} alpha 0.5}
+                 \PY{n}{alpha}\PY{o}{=}\PY{l+m+mf}{0.5}\PY{p}{)}
+         
+         \PY{c+c1}{\PYZsh{} set axes labels and title}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{ylabel}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Avg. Payment}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{fontsize}\PY{o}{=}\PY{l+m+mi}{18}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{xticks}\PY{p}{(}\PY{n}{age\PYZus{}range}\PY{p}{,} \PY{n}{fontsize}\PY{o}{=}\PY{l+m+mi}{15}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{yticks}\PY{p}{(}\PY{n}{fontsize}\PY{o}{=}\PY{l+m+mi}{16}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{title}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Of The Accounts that paid, Avg. Payment by Age Range}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{fontsize}\PY{o}{=}\PY{l+m+mi}{24}\PY{p}{)}
+         
+         \PY{n}{plt}\PY{o}{.}\PY{n}{show}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_29_0.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}20}]:} \PY{n}{paid\PYZus{}groupby\PYZus{}age}\PY{o}{.}\PY{n}{Total\PYZus{}Paid}\PY{o}{.}\PY{n}{mean}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}20}]:} Age\_range
+         18-21    231.378592
+         22-24    284.926917
+         25-29    285.273071
+         30-34    297.899945
+         35-39    278.022464
+         40-44    253.671041
+         45-49    236.463813
+         50-54    242.258159
+         55-59    246.348483
+         60-64    246.388457
+         65-69    248.688304
+         70-74    245.662268
+         75-79    200.030902
+         80-84    186.740654
+         85-89    187.437382
+         90 +     216.861679
+         Name: Total\_Paid, dtype: float64
+\end{Verbatim}
+            
+    \hypertarget{what-is-the-total-amount-paid-by-age-range}{%
+\subsubsection{What is the total amount paid by age
+range?}\label{what-is-the-total-amount-paid-by-age-range}}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}21}]:} \PY{n}{plt}\PY{o}{.}\PY{n}{figure}\PY{p}{(}\PY{n}{figsize}\PY{o}{=}\PY{p}{(}\PY{l+m+mi}{18}\PY{p}{,}\PY{l+m+mi}{10}\PY{p}{)}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{bar}\PY{p}{(}\PY{n}{age\PYZus{}range}\PY{p}{,}
+                 \PY{c+c1}{\PYZsh{} using the data from the mean\PYZus{}values}
+                 \PY{n}{paid\PYZus{}groupby\PYZus{}age}\PY{o}{.}\PY{n}{Total\PYZus{}Paid}\PY{o}{.}\PY{n}{sum}\PY{p}{(}\PY{p}{)}\PY{p}{,} 
+                 \PY{c+c1}{\PYZsh{} with a y\PYZhy{}error lines set at variance}
+                 \PY{c+c1}{\PYZsh{}yerr=variance, }
+                 \PY{c+c1}{\PYZsh{} aligned in the center}
+                 \PY{n}{align}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{center}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}
+                 \PY{c+c1}{\PYZsh{} with color}
+                 \PY{n}{color}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{green}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}
+                 \PY{c+c1}{\PYZsh{} alpha 0.5}
+                 \PY{n}{alpha}\PY{o}{=}\PY{l+m+mf}{0.5}\PY{p}{)}
+         
+         \PY{c+c1}{\PYZsh{} set axes labels and title}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{ylabel}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Total Payment}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{fontsize}\PY{o}{=}\PY{l+m+mi}{18}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{xticks}\PY{p}{(}\PY{n}{age\PYZus{}range}\PY{p}{,} \PY{n}{fontsize}\PY{o}{=}\PY{l+m+mi}{15}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{yticks}\PY{p}{(}\PY{n}{fontsize}\PY{o}{=}\PY{l+m+mi}{16}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{title}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Total amount paid by Age Range}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{fontsize}\PY{o}{=}\PY{l+m+mi}{24}\PY{p}{)}
+         
+         \PY{n}{plt}\PY{o}{.}\PY{n}{show}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_32_0.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}22}]:} \PY{n}{paid\PYZus{}groupby\PYZus{}age}\PY{o}{.}\PY{n}{Total\PYZus{}Paid}\PY{o}{.}\PY{n}{sum}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}22}]:} Age\_range
+         18-21      113375.51
+         22-24      497197.47
+         25-29    10912265.51
+         30-34    16259676.92
+         35-39    15271217.92
+         40-44    13263951.41
+         45-49    20964881.70
+         50-54    13698972.14
+         55-59    14531357.95
+         60-64    13457491.15
+         65-69    10932586.53
+         70-74     6608560.66
+         75-79     1927897.83
+         80-84      936877.86
+         85-89      642160.47
+         90 +       976745.00
+         Name: Total\_Paid, dtype: float64
+\end{Verbatim}
+            
+    \hypertarget{observations}{%
+\subsection{\#\#\#\# Observations:}\label{observations}}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  In terms of quantity of total accounts by age range, age
+  \texttt{45-49} has the most number of accounts, and the has the most
+  number of accounts that paid.
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Number of Paid Accounts: 88,890
+  \item
+    Avg. Invoice Balance of The Accounts that Paid:
+    \textbackslash{}\$385.14
+  \item
+    Avg. collected: \textbackslash{}\$236.46
+  \item
+    Total collected: \textbackslash{}\$20,964,881.70
+  \end{itemize}
+\item
+  In second place, in terms of number of accounts that paid by age
+  range, is \texttt{55-59}.
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Number of Paid Accounts: 59,141
+  \item
+    Avg. Invoice Balance of The Accounts that Paid:
+    \textbackslash{}\$404.09
+  \item
+    Avg. collected: \textbackslash{}\$246.34
+  \item
+    Total collected: \textbackslash{}\$14,531,357.95
+  \end{itemize}
+\item
+  In third place, in terms of number of accounts that paid by age range,
+  is \texttt{50-54}.
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Number of Paid Accounts: 59,141
+  \item
+    Avg. Invoice Balance of The Accounts that Paid:
+    \textbackslash{}\$385.14
+  \item
+    Avg. collected: \textbackslash{}\$242.25
+  \item
+    Total collected: \textbackslash{}\$13,698,972.14
+  \end{itemize}
+\end{enumerate}
+
+\textbf{Intersting Find:}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{3}
+\tightlist
+\item
+  Behind age range \texttt{45-49}, age \texttt{30-34} has the second
+  most collected amount of \textbackslash{}\$16,259,676.92.
+
+  \begin{itemize}
+  \item
+    Number of Paid Accounts: 54,709
+  \item
+    Avg. Invoice Balance of The Accounts that Paid:
+    \textbackslash{}\$486.16
+  \item
+    Avg. collected: \textbackslash{}\$297.89
+  \item ~
+    \hypertarget{total-collected-16259676.92.}{%
+    \subsection{Total collected:
+    \textbackslash{}\$16,259,676.92.}\label{total-collected-16259676.92.}}
+  \end{itemize}
+\end{enumerate}
+
+    \hypertarget{age-45-49}{%
+\paragraph{Age 45-49}\label{age-45-49}}
+
+Let's look deeper into paid accounts within the age range \texttt{45-49}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}23}]:} \PY{n}{df\PYZus{}groupby} \PY{o}{=} \PY{n}{paid}\PY{o}{.}\PY{n}{groupby}\PY{p}{(}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Age\PYZus{}range}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Seller\PYZus{}Type}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Income\PYZus{}level}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{)}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Total\PYZus{}Paid}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{o}{.}\PY{n}{size}\PY{p}{(}\PY{p}{)}\PY{o}{.}\PY{n}{reset\PYZus{}index}\PY{p}{(}\PY{p}{)}
+         \PY{n}{df\PYZus{}total\PYZus{}groupby} \PY{o}{=} \PY{n}{data}\PY{o}{.}\PY{n}{groupby}\PY{p}{(}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Age\PYZus{}range}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Seller\PYZus{}Type}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Income\PYZus{}level}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{)}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Total\PYZus{}Paid}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{o}{.}\PY{n}{size}\PY{p}{(}\PY{p}{)}\PY{o}{.}\PY{n}{reset\PYZus{}index}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}24}]:} \PY{n}{paid\PYZus{}45\PYZus{}49} \PY{o}{=} \PY{n}{df\PYZus{}groupby}\PY{p}{[}\PY{n}{df\PYZus{}groupby}\PY{o}{.}\PY{n}{Age\PYZus{}range} \PY{o}{==} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{45\PYZhy{}49}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}
+         \PY{n}{paid\PYZus{}45\PYZus{}49}\PY{o}{.}\PY{n}{rename}\PY{p}{(}\PY{n}{columns}\PY{o}{=}\PY{p}{\PYZob{}}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Total\PYZus{}Paid}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Count}\PY{l+s+s1}{\PYZsq{}}\PY{p}{\PYZcb{}}\PY{p}{,} \PY{n}{inplace}\PY{o}{=}\PY{k+kc}{True}\PY{p}{)}
+         \PY{n}{paid\PYZus{}45\PYZus{}49}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}24}]:}    Age\_range Seller\_Type  Income\_level  Count
+         85     45-49   AMBULANCE     0ver\_150k      6
+         86     45-49   AMBULANCE  100k\_to\_150k    156
+         87     45-49   AMBULANCE    25k\_to\_35k     84
+         88     45-49   AMBULANCE    35k\_to\_50k    966
+         89     45-49   AMBULANCE    50k\_to\_75k   4004
+         90     45-49   AMBULANCE   75k\_to\_100k   1008
+         91     45-49   AMBULANCE     Under\_20k      2
+         92     45-49    HOSPITAL     0ver\_150k     47
+         93     45-49    HOSPITAL  100k\_to\_150k   1283
+         94     45-49    HOSPITAL    20k\_to\_25k    117
+         95     45-49    HOSPITAL    25k\_to\_35k   3316
+         96     45-49    HOSPITAL    35k\_to\_50k  25028
+         97     45-49    HOSPITAL    50k\_to\_75k  45813
+         98     45-49    HOSPITAL   75k\_to\_100k   7012
+         99     45-49    HOSPITAL     Under\_20k     48
+\end{Verbatim}
+            
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}25}]:} \PY{n}{total\PYZus{}45\PYZus{}49} \PY{o}{=} \PY{n}{df\PYZus{}total\PYZus{}groupby}\PY{p}{[}\PY{n}{df\PYZus{}total\PYZus{}groupby}\PY{o}{.}\PY{n}{Age\PYZus{}range} \PY{o}{==} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{45\PYZhy{}49}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}
+         \PY{n}{total\PYZus{}45\PYZus{}49}\PY{o}{.}\PY{n}{rename}\PY{p}{(}\PY{n}{columns}\PY{o}{=}\PY{p}{\PYZob{}}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Total\PYZus{}Paid}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Count}\PY{l+s+s1}{\PYZsq{}}\PY{p}{\PYZcb{}}\PY{p}{,} \PY{n}{inplace}\PY{o}{=}\PY{k+kc}{True}\PY{p}{)}
+         \PY{n}{total\PYZus{}45\PYZus{}49}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}25}]:}     Age\_range Seller\_Type  Income\_level   Count
+         96      45-49   AMBULANCE     0ver\_150k     113
+         97      45-49   AMBULANCE  100k\_to\_150k    3991
+         98      45-49   AMBULANCE    20k\_to\_25k     402
+         99      45-49   AMBULANCE    25k\_to\_35k    4784
+         100     45-49   AMBULANCE    35k\_to\_50k   52005
+         101     45-49   AMBULANCE    50k\_to\_75k  165450
+         102     45-49   AMBULANCE   75k\_to\_100k   29959
+         103     45-49   AMBULANCE     Under\_20k     184
+         104     45-49    HOSPITAL     0ver\_150k     195
+         105     45-49    HOSPITAL  100k\_to\_150k    9429
+         106     45-49    HOSPITAL    20k\_to\_25k    4804
+         107     45-49    HOSPITAL    25k\_to\_35k  104540
+         108     45-49    HOSPITAL    35k\_to\_50k  601429
+         109     45-49    HOSPITAL    50k\_to\_75k  768340
+         110     45-49    HOSPITAL   75k\_to\_100k   76783
+         111     45-49    HOSPITAL     Under\_20k    1997
+\end{Verbatim}
+            
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}26}]:} \PY{n}{a} \PY{o}{=} \PY{n}{paid}\PY{o}{.}\PY{n}{groupby}\PY{p}{(}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Age\PYZus{}range}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Seller\PYZus{}Type}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Income\PYZus{}level}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Target}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Total\PYZus{}Paid}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}27}]:} \PY{n}{b} \PY{o}{=} \PY{n}{a}\PY{o}{.}\PY{n}{size}\PY{p}{(}\PY{p}{)}\PY{o}{.}\PY{n}{reset\PYZus{}index}\PY{p}{(}\PY{n}{name}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Count}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}28}]:} \PY{n}{b}\PY{p}{[}\PY{p}{(}\PY{n}{b}\PY{o}{.}\PY{n}{Age\PYZus{}range} \PY{o}{==} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{45\PYZhy{}49}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)} \PY{o}{\PYZam{}} \PY{p}{(}\PY{n}{b}\PY{o}{.}\PY{n}{Seller\PYZus{}Type} \PY{o}{==} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{AMBULANCE}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}\PY{p}{]}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}28}]:}        Age\_range Seller\_Type  Income\_level Target  Total\_Paid  Count
+         139715     45-49   AMBULANCE     0ver\_150k      A      179.35      1
+         139716     45-49   AMBULANCE     0ver\_150k      A      314.62      1
+         139717     45-49   AMBULANCE     0ver\_150k      D     1300.00      1
+         139718     45-49   AMBULANCE     0ver\_150k      E      415.39      1
+         139719     45-49   AMBULANCE     0ver\_150k      E      511.77      1
+         139720     45-49   AMBULANCE     0ver\_150k      E     1080.65      1
+         139721     45-49   AMBULANCE  100k\_to\_150k      A       32.90      1
+         139722     45-49   AMBULANCE  100k\_to\_150k      A       50.00      8
+         139723     45-49   AMBULANCE  100k\_to\_150k      A       68.40      1
+         139724     45-49   AMBULANCE  100k\_to\_150k      A       72.58      1
+         139725     45-49   AMBULANCE  100k\_to\_150k      A       75.00      4
+         139726     45-49   AMBULANCE  100k\_to\_150k      A       98.45      1
+         139727     45-49   AMBULANCE  100k\_to\_150k      A       98.92      1
+         139728     45-49   AMBULANCE  100k\_to\_150k      A      100.00      2
+         139729     45-49   AMBULANCE  100k\_to\_150k      A      102.00      1
+         139730     45-49   AMBULANCE  100k\_to\_150k      A      134.85      1
+         139731     45-49   AMBULANCE  100k\_to\_150k      A      150.00      1
+         139732     45-49   AMBULANCE  100k\_to\_150k      A      166.87      1
+         139733     45-49   AMBULANCE  100k\_to\_150k      A      217.76      1
+         139734     45-49   AMBULANCE  100k\_to\_150k      A      294.71      1
+         139735     45-49   AMBULANCE  100k\_to\_150k      A      311.16      1
+         139736     45-49   AMBULANCE  100k\_to\_150k      A      318.50      1
+         139737     45-49   AMBULANCE  100k\_to\_150k      A      322.27      1
+         139738     45-49   AMBULANCE  100k\_to\_150k      A      339.23      1
+         139739     45-49   AMBULANCE  100k\_to\_150k      A      363.96      1
+         139740     45-49   AMBULANCE  100k\_to\_150k      A      368.50      1
+         139741     45-49   AMBULANCE  100k\_to\_150k      A      630.31      1
+         139742     45-49   AMBULANCE  100k\_to\_150k      A      790.71      1
+         139743     45-49   AMBULANCE  100k\_to\_150k      A      914.00      1
+         139744     45-49   AMBULANCE  100k\_to\_150k      A      991.40      1
+         {\ldots}          {\ldots}         {\ldots}           {\ldots}    {\ldots}         {\ldots}    {\ldots}
+         144878     45-49   AMBULANCE   75k\_to\_100k      F      619.30      1
+         144879     45-49   AMBULANCE   75k\_to\_100k      F      621.35      1
+         144880     45-49   AMBULANCE   75k\_to\_100k      F      624.00      1
+         144881     45-49   AMBULANCE   75k\_to\_100k      F      626.86      1
+         144882     45-49   AMBULANCE   75k\_to\_100k      F      631.29      1
+         144883     45-49   AMBULANCE   75k\_to\_100k      F      633.33      1
+         144884     45-49   AMBULANCE   75k\_to\_100k      F      639.19      1
+         144885     45-49   AMBULANCE   75k\_to\_100k      F      649.20      1
+         144886     45-49   AMBULANCE   75k\_to\_100k      F      657.00      1
+         144887     45-49   AMBULANCE   75k\_to\_100k      F      664.20      1
+         144888     45-49   AMBULANCE   75k\_to\_100k      F      668.31      1
+         144889     45-49   AMBULANCE   75k\_to\_100k      F      676.35      1
+         144890     45-49   AMBULANCE   75k\_to\_100k      F      688.72      1
+         144891     45-49   AMBULANCE   75k\_to\_100k      F      690.56      1
+         144892     45-49   AMBULANCE   75k\_to\_100k      F      698.64      1
+         144893     45-49   AMBULANCE   75k\_to\_100k      F      700.00      2
+         144894     45-49   AMBULANCE   75k\_to\_100k      F      721.90      1
+         144895     45-49   AMBULANCE   75k\_to\_100k      F      727.38      1
+         144896     45-49   AMBULANCE   75k\_to\_100k      F      730.20      1
+         144897     45-49   AMBULANCE   75k\_to\_100k      F      745.78      1
+         144898     45-49   AMBULANCE   75k\_to\_100k      F      753.12      1
+         144899     45-49   AMBULANCE   75k\_to\_100k      F      774.36      1
+         144900     45-49   AMBULANCE   75k\_to\_100k      F      800.00      1
+         144901     45-49   AMBULANCE   75k\_to\_100k      F      824.37      1
+         144902     45-49   AMBULANCE   75k\_to\_100k      F      900.00      1
+         144903     45-49   AMBULANCE   75k\_to\_100k      F      910.64      1
+         144904     45-49   AMBULANCE   75k\_to\_100k      F      947.25      1
+         144905     45-49   AMBULANCE   75k\_to\_100k      F     1611.81      1
+         144906     45-49   AMBULANCE     Under\_20k      A      199.95      1
+         144907     45-49   AMBULANCE     Under\_20k      F      459.01      1
+         
+         [5193 rows x 6 columns]
+\end{Verbatim}
+            
+    \hypertarget{age_range-unemployment_rate}{%
+\subsection{\# Age\_range \&
+Unemployment\_rate}\label{age_range-unemployment_rate}}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}29}]:} \PY{c+c1}{\PYZsh{}creating a function to bin ages }
+         \PY{k}{def} \PY{n+nf}{unemployment\PYZus{}rate}\PY{p}{(}\PY{n}{row}\PY{p}{)}\PY{p}{:}
+         
+             \PY{k}{if} \PY{n}{row} \PY{o}{\PYZgt{}}\PY{o}{=} \PY{l+m+mi}{0} \PY{o+ow}{and} \PY{n}{row} \PY{o}{\PYZlt{}} \PY{l+m+mi}{3}\PY{p}{:} 
+                 \PY{k}{return} \PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{0\PYZhy{}2.9}\PY{l+s+s1}{\PYZpc{}}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+             \PY{k}{elif} \PY{n}{row} \PY{o}{\PYZgt{}}\PY{o}{=} \PY{l+m+mi}{3} \PY{o+ow}{and} \PY{n}{row} \PY{o}{\PYZlt{}} \PY{l+m+mi}{5}\PY{p}{:}
+                 \PY{k}{return} \PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{3\PYZhy{}4.9}\PY{l+s+s1}{\PYZpc{}}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+             \PY{k}{elif} \PY{n}{row} \PY{o}{\PYZgt{}}\PY{o}{=} \PY{l+m+mi}{5} \PY{o+ow}{and} \PY{n}{row} \PY{o}{\PYZlt{}} \PY{l+m+mi}{7}\PY{p}{:} 
+                 \PY{k}{return} \PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{5\PYZhy{}6.9}\PY{l+s+s1}{\PYZpc{}}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+             \PY{k}{elif} \PY{n}{row} \PY{o}{\PYZgt{}}\PY{o}{=} \PY{l+m+mi}{7} \PY{o+ow}{and} \PY{n}{row} \PY{o}{\PYZlt{}} \PY{l+m+mi}{9}\PY{p}{:} 
+                 \PY{k}{return} \PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{7\PYZhy{}8.9}\PY{l+s+s1}{\PYZpc{}}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+             \PY{k}{elif} \PY{n}{row} \PY{o}{\PYZgt{}}\PY{o}{=} \PY{l+m+mi}{9} \PY{o+ow}{and} \PY{n}{row} \PY{o}{\PYZlt{}} \PY{l+m+mi}{11}\PY{p}{:} 
+                 \PY{k}{return} \PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{9\PYZhy{}10.9}\PY{l+s+s1}{\PYZpc{}}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+             \PY{k}{elif} \PY{n}{row} \PY{o}{\PYZgt{}}\PY{o}{=} \PY{l+m+mi}{11} \PY{o+ow}{and} \PY{n}{row} \PY{o}{\PYZlt{}} \PY{l+m+mi}{15}\PY{p}{:} 
+                 \PY{k}{return} \PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{11\PYZhy{}14.9}\PY{l+s+s1}{\PYZpc{}}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+             \PY{k}{elif} \PY{n}{row} \PY{o}{\PYZgt{}}\PY{o}{=} \PY{l+m+mi}{15} \PY{o+ow}{and} \PY{n}{row} \PY{o}{\PYZlt{}} \PY{l+m+mi}{20}\PY{p}{:} 
+                 \PY{k}{return} \PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{15\PYZhy{}19.9}\PY{l+s+s1}{\PYZpc{}}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+             \PY{k}{elif} \PY{n}{row} \PY{o}{\PYZgt{}}\PY{o}{=} \PY{l+m+mi}{20} \PY{o+ow}{and} \PY{n}{row} \PY{o}{\PYZlt{}} \PY{l+m+mi}{30}\PY{p}{:}
+                 \PY{k}{return} \PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{20\PYZhy{}29.9}\PY{l+s+s1}{\PYZpc{}}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+             \PY{k}{elif} \PY{n}{row} \PY{o}{\PYZgt{}}\PY{o}{=} \PY{l+m+mi}{30} \PY{o+ow}{and} \PY{n}{row} \PY{o}{\PYZlt{}} \PY{l+m+mi}{40}\PY{p}{:} 
+                 \PY{k}{return} \PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{30\PYZhy{}39.9}\PY{l+s+s1}{\PYZpc{}}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+             \PY{k}{elif} \PY{n}{row} \PY{o}{\PYZgt{}}\PY{o}{=} \PY{l+m+mi}{40} \PY{o+ow}{and} \PY{n}{row} \PY{o}{\PYZlt{}} \PY{l+m+mi}{50}\PY{p}{:} 
+                 \PY{k}{return} \PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{40\PYZhy{}49.9}\PY{l+s+s1}{\PYZpc{}}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+             \PY{k}{else}\PY{p}{:} 
+                 \PY{k}{return} \PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{50}\PY{l+s+s1}{\PYZpc{}}\PY{l+s+s1}{+}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}30}]:} \PY{n}{paid}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Unemply\PYZus{}rate\PYZus{}range}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{=} \PY{n}{paid}\PY{o}{.}\PY{n}{unemployment\PYZus{}rate}\PY{o}{.}\PY{n}{apply}\PY{p}{(}\PY{n}{unemployment\PYZus{}rate}\PY{p}{)}
+         \PY{n}{unpaid}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Unemply\PYZus{}rate\PYZus{}range}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{=} \PY{n}{unpaid}\PY{o}{.}\PY{n}{unemployment\PYZus{}rate}\PY{o}{.}\PY{n}{apply}\PY{p}{(}\PY{n}{unemployment\PYZus{}rate}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}31}]:} \PY{n}{a} \PY{o}{=} \PY{n}{paid}\PY{o}{.}\PY{n}{groupby}\PY{p}{(}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Age\PYZus{}range}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Unemply\PYZus{}rate\PYZus{}range}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{)}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Total\PYZus{}Paid}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{o}{.}\PY{n}{size}\PY{p}{(}\PY{p}{)}\PY{o}{.}\PY{n}{reset\PYZus{}index}\PY{p}{(}\PY{p}{)}
+         \PY{n}{a}\PY{o}{.}\PY{n}{rename}\PY{p}{(}\PY{n}{columns}\PY{o}{=}\PY{p}{\PYZob{}}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Total\PYZus{}Paid}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Total\PYZus{}Paid\PYZus{}Count}\PY{l+s+s1}{\PYZsq{}}\PY{p}{\PYZcb{}}\PY{p}{,} \PY{n}{inplace}\PY{o}{=}\PY{k+kc}{True}\PY{p}{)}
+         
+         \PY{n}{b} \PY{o}{=} \PY{n}{unpaid}\PY{o}{.}\PY{n}{groupby}\PY{p}{(}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Age\PYZus{}range}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Unemply\PYZus{}rate\PYZus{}range}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{)}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Total\PYZus{}Paid}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{o}{.}\PY{n}{size}\PY{p}{(}\PY{p}{)}\PY{o}{.}\PY{n}{reset\PYZus{}index}\PY{p}{(}\PY{p}{)}
+         \PY{n}{b}\PY{o}{.}\PY{n}{rename}\PY{p}{(}\PY{n}{columns}\PY{o}{=}\PY{p}{\PYZob{}}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Total\PYZus{}Paid}\PY{l+s+s1}{\PYZsq{}} \PY{p}{:} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Unpaid\PYZus{}Count}\PY{l+s+s1}{\PYZsq{}}\PY{p}{\PYZcb{}}\PY{p}{,} \PY{n}{inplace}\PY{o}{=}\PY{k+kc}{True}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}32}]:} \PY{n}{b}\PY{p}{[}\PY{n}{b}\PY{o}{.}\PY{n}{Age\PYZus{}range}\PY{o}{==}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{45\PYZhy{}49}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}32}]:}    Age\_range Unemply\_rate\_range  Unpaid\_Count
+         66     45-49             0-2.9\%         37494
+         67     45-49           11-14.9\%        238295
+         68     45-49           15-19.9\%         86400
+         69     45-49           20-29.9\%         35305
+         70     45-49             3-4.9\%        203074
+         71     45-49           30-39.9\%          3371
+         72     45-49           40-49.9\%           644
+         73     45-49             5-6.9\%        428939
+         74     45-49               50\%+         44959
+         75     45-49             7-8.9\%        380279
+         76     45-49            9-10.9\%        276755
+\end{Verbatim}
+            
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}33}]:} \PY{n}{ab} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{merge}\PY{p}{(}\PY{n}{b}\PY{p}{,} \PY{n}{a}\PY{p}{,} \PY{n}{on}\PY{o}{=}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Age\PYZus{}range}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Unemply\PYZus{}rate\PYZus{}range}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}34}]:} \PY{n}{ab}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Percent\PYZus{}Paid}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{=} \PY{n+nb}{round}\PY{p}{(}\PY{p}{(}\PY{n}{ab}\PY{o}{.}\PY{n}{Total\PYZus{}Paid\PYZus{}Count} \PY{o}{/} \PY{n}{ab}\PY{o}{.}\PY{n}{Unpaid\PYZus{}Count}\PY{p}{)}\PY{o}{*}\PY{l+m+mi}{100}\PY{p}{,} \PY{l+m+mi}{2}\PY{p}{)}
+         \PY{n}{ab}\PY{o}{.}\PY{n}{head}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}34}]:}   Age\_range Unemply\_rate\_range  Unpaid\_Count  Total\_Paid\_Count  Percent\_Paid
+         0     18-21             0-2.9\%           333                13          3.90
+         1     18-21           11-14.9\%          2597                42          1.62
+         2     18-21           15-19.9\%          1099                16          1.46
+         3     18-21           20-29.9\%           308                 4          1.30
+         4     18-21             3-4.9\%          2234               107          4.79
+\end{Verbatim}
+            
+    \hypertarget{age_range-30-34}{%
+\paragraph{\texorpdfstring{Age\_range
+\texttt{30-34}}{Age\_range 30-34}}\label{age_range-30-34}}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}35}]:} \PY{n}{ab}\PY{p}{[}\PY{n}{ab}\PY{o}{.}\PY{n}{Age\PYZus{}range} \PY{o}{==}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{30\PYZhy{}34}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{o}{.}\PY{n}{sort\PYZus{}values}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Total\PYZus{}Paid\PYZus{}Count}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{ascending}\PY{o}{=}\PY{k+kc}{False}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}35}]:}    Age\_range Unemply\_rate\_range  Unpaid\_Count  Total\_Paid\_Count  Percent\_Paid
+         38     30-34             5-6.9\%        355633             16087          4.52
+         40     30-34             7-8.9\%        340410             12388          3.64
+         35     30-34             3-4.9\%        155687              8339          5.36
+         41     30-34            9-10.9\%        258712              7584          2.93
+         32     30-34           11-14.9\%        214853              5921          2.76
+         33     30-34           15-19.9\%         86992              1694          1.95
+         31     30-34             0-2.9\%         28398              1221          4.30
+         39     30-34               50\%+         28371               743          2.62
+         34     30-34           20-29.9\%         32777               669          2.04
+         36     30-34           30-39.9\%          3428                56          1.63
+         37     30-34           40-49.9\%           380                 7          1.84
+\end{Verbatim}
+            
+    \hypertarget{age_range-45-49}{%
+\paragraph{\texorpdfstring{Age\_range
+\texttt{45-49}}{Age\_range 45-49}}\label{age_range-45-49}}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}36}]:} \PY{n}{ab}\PY{p}{[}\PY{n}{ab}\PY{o}{.}\PY{n}{Age\PYZus{}range} \PY{o}{==}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{45\PYZhy{}49}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{o}{.}\PY{n}{sort\PYZus{}values}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Total\PYZus{}Paid\PYZus{}Count}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{ascending}\PY{o}{=}\PY{k+kc}{False}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}36}]:}    Age\_range Unemply\_rate\_range  Unpaid\_Count  Total\_Paid\_Count  Percent\_Paid
+         71     45-49             5-6.9\%        428939             27424          6.39
+         73     45-49             7-8.9\%        380279             18385          4.83
+         68     45-49             3-4.9\%        203074             16897          8.32
+         74     45-49            9-10.9\%        276755             10185          3.68
+         65     45-49           11-14.9\%        238295              8706          3.65
+         64     45-49             0-2.9\%         37494              2659          7.09
+         66     45-49           15-19.9\%         86400              2466          2.85
+         72     45-49               50\%+         44959              1070          2.38
+         67     45-49           20-29.9\%         35305               997          2.82
+         69     45-49           30-39.9\%          3371                85          2.52
+         70     45-49           40-49.9\%           644                16          2.48
+\end{Verbatim}
+            
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}37}]:} \PY{k+kn}{import} \PY{n+nn}{pprint}
+         \PY{n}{pp} \PY{o}{=} \PY{n}{pprint}\PY{o}{.}\PY{n}{PrettyPrinter}\PY{p}{(}\PY{n}{indent}\PY{o}{=}\PY{l+m+mi}{3}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}38}]:} \PY{n}{ab}\PY{o}{.}\PY{n}{Age\PYZus{}range}\PY{o}{.}\PY{n}{unique}\PY{p}{(}\PY{p}{)}
+         
+         \PY{k}{for} \PY{n}{i} \PY{o+ow}{in} \PY{n}{ab}\PY{o}{.}\PY{n}{Age\PYZus{}range}\PY{o}{.}\PY{n}{unique}\PY{p}{(}\PY{p}{)}\PY{p}{:} 
+             \PY{n}{x} \PY{o}{=} \PY{n}{ab}\PY{p}{[}\PY{n}{ab}\PY{o}{.}\PY{n}{Age\PYZus{}range} \PY{o}{==} \PY{n}{i}\PY{p}{]}\PY{o}{.}\PY{n}{sort\PYZus{}values}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Total\PYZus{}Paid\PYZus{}Count}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{ascending}\PY{o}{=}\PY{k+kc}{False}\PY{p}{)}
+             \PY{n}{pp}\PY{o}{.}\PY{n}{pprint}\PY{p}{(}\PY{n}{x}\PY{p}{)}
+             \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+se}{\PYZbs{}n}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+  Age\_range Unemply\_rate\_range  Unpaid\_Count  Total\_Paid\_Count  Percent\_Paid
+5     18-21             5-6.9\%          3922               145          3.70
+7     18-21             7-8.9\%          3645               123          3.37
+4     18-21             3-4.9\%          2234               107          4.79
+8     18-21            9-10.9\%          2425                50          2.06
+1     18-21           11-14.9\%          2597                42          1.62
+2     18-21           15-19.9\%          1099                16          1.46
+0     18-21             0-2.9\%           333                13          3.90
+3     18-21           20-29.9\%           308                 4          1.30
+6     18-21               50\%+           625                 3          0.48
+
+
+   Age\_range Unemply\_rate\_range  Unpaid\_Count  Total\_Paid\_Count  Percent\_Paid
+16     22-24             5-6.9\%          9251               548          5.92
+18     22-24             7-8.9\%          7748               430          5.55
+13     22-24             3-4.9\%          4175               322          7.71
+19     22-24            9-10.9\%          4953               181          3.65
+10     22-24           11-14.9\%          4624               131          2.83
+9      22-24             0-2.9\%           693                70         10.10
+11     22-24           15-19.9\%          1754                55          3.14
+17     22-24               50\%+          1218                25          2.05
+12     22-24           20-29.9\%           672                18          2.68
+14     22-24           30-39.9\%            62                 1          1.61
+15     22-24           40-49.9\%            10                 1         10.00
+
+
+   Age\_range Unemply\_rate\_range  Unpaid\_Count  Total\_Paid\_Count  Percent\_Paid
+27     25-29             5-6.9\%        187192             11113          5.94
+29     25-29             7-8.9\%        180199              8628          4.79
+24     25-29             3-4.9\%         81433              6162          7.57
+30     25-29            9-10.9\%        127430              5123          4.02
+21     25-29           11-14.9\%        112036              3965          3.54
+22     25-29           15-19.9\%         47925              1292          2.70
+20     25-29             0-2.9\%         13718               948          6.91
+28     25-29               50\%+         14077               614          4.36
+23     25-29           20-29.9\%         20112               521          2.59
+25     25-29           30-39.9\%          1760                40          2.27
+26     25-29           40-49.9\%           158                 8          5.06
+
+
+   Age\_range Unemply\_rate\_range  Unpaid\_Count  Total\_Paid\_Count  Percent\_Paid
+38     30-34             5-6.9\%        355633             16087          4.52
+40     30-34             7-8.9\%        340410             12388          3.64
+35     30-34             3-4.9\%        155687              8339          5.36
+41     30-34            9-10.9\%        258712              7584          2.93
+32     30-34           11-14.9\%        214853              5921          2.76
+33     30-34           15-19.9\%         86992              1694          1.95
+31     30-34             0-2.9\%         28398              1221          4.30
+39     30-34               50\%+         28371               743          2.62
+34     30-34           20-29.9\%         32777               669          2.04
+36     30-34           30-39.9\%          3428                56          1.63
+37     30-34           40-49.9\%           380                 7          1.84
+
+
+   Age\_range Unemply\_rate\_range  Unpaid\_Count  Total\_Paid\_Count  Percent\_Paid
+49     35-39             5-6.9\%        373516             16690          4.47
+51     35-39             7-8.9\%        345817             12105          3.50
+46     35-39             3-4.9\%        170185              8898          5.23
+52     35-39            9-10.9\%        258877              7211          2.79
+43     35-39           11-14.9\%        209888              5629          2.68
+44     35-39           15-19.9\%         83173              1682          2.02
+42     35-39             0-2.9\%         31605              1433          4.53
+50     35-39               50\%+         30718               736          2.40
+45     35-39           20-29.9\%         30199               613          2.03
+47     35-39           30-39.9\%          3182                42          1.32
+48     35-39           40-49.9\%           370                17          4.59
+
+
+   Age\_range Unemply\_rate\_range  Unpaid\_Count  Total\_Paid\_Count  Percent\_Paid
+60     40-44             5-6.9\%        329070             15874          4.82
+62     40-44             7-8.9\%        305114             11192          3.67
+57     40-44             3-4.9\%        154085              8939          5.80
+63     40-44            9-10.9\%        230648              6880          2.98
+54     40-44           11-14.9\%        183532              5238          2.85
+55     40-44           15-19.9\%         71308              1471          2.06
+53     40-44             0-2.9\%         29029              1419          4.89
+61     40-44               50\%+         30120               670          2.22
+56     40-44           20-29.9\%         26023               634          2.44
+58     40-44           30-39.9\%          3234                47          1.45
+59     40-44           40-49.9\%           557                 7          1.26
+
+
+   Age\_range Unemply\_rate\_range  Unpaid\_Count  Total\_Paid\_Count  Percent\_Paid
+71     45-49             5-6.9\%        428939             27424          6.39
+73     45-49             7-8.9\%        380279             18385          4.83
+68     45-49             3-4.9\%        203074             16897          8.32
+74     45-49            9-10.9\%        276755             10185          3.68
+65     45-49           11-14.9\%        238295              8706          3.65
+64     45-49             0-2.9\%         37494              2659          7.09
+66     45-49           15-19.9\%         86400              2466          2.85
+72     45-49               50\%+         44959              1070          2.38
+67     45-49           20-29.9\%         35305               997          2.82
+69     45-49           30-39.9\%          3371                85          2.52
+70     45-49           40-49.9\%           644                16          2.48
+
+
+   Age\_range Unemply\_rate\_range  Unpaid\_Count  Total\_Paid\_Count  Percent\_Paid
+82     50-54             5-6.9\%        287754             16875          5.86
+84     50-54             7-8.9\%        262920             11872          4.52
+79     50-54             3-4.9\%        136933             10080          7.36
+85     50-54            9-10.9\%        201780              7238          3.59
+76     50-54           11-14.9\%        167553              5439          3.25
+77     50-54           15-19.9\%         65384              1798          2.75
+75     50-54             0-2.9\%         23402              1579          6.75
+78     50-54           20-29.9\%         26313               873          3.32
+83     50-54               50\%+         33285               855          2.57
+80     50-54           30-39.9\%          2485                49          1.97
+81     50-54           40-49.9\%           344                14          4.07
+
+
+   Age\_range Unemply\_rate\_range  Unpaid\_Count  Total\_Paid\_Count  Percent\_Paid
+93     55-59             5-6.9\%        278212             17580          6.32
+95     55-59             7-8.9\%        253046             12342          4.88
+90     55-59             3-4.9\%        128998             10181          7.89
+96     55-59            9-10.9\%        199421              7623          3.82
+87     55-59           11-14.9\%        167677              6018          3.59
+88     55-59           15-19.9\%         67158              1858          2.77
+86     55-59             0-2.9\%         22480              1651          7.34
+89     55-59           20-29.9\%         29804               895          3.00
+94     55-59               50\%+         35055               895          2.55
+91     55-59           30-39.9\%          2927                83          2.84
+92     55-59           40-49.9\%           346                15          4.34
+
+
+    Age\_range Unemply\_rate\_range  Unpaid\_Count  Total\_Paid\_Count  Percent\_Paid
+104     60-64             5-6.9\%        215929             15647          7.25
+106     60-64             7-8.9\%        198687             11338          5.71
+101     60-64             3-4.9\%        102066              9172          8.99
+107     60-64            9-10.9\%        157397              6930          4.40
+98      60-64           11-14.9\%        135197              5926          4.38
+99      60-64           15-19.9\%         56057              2228          3.97
+97      60-64             0-2.9\%         17500              1495          8.54
+100     60-64           20-29.9\%         26247              1086          4.14
+105     60-64               50\%+         29089               869          2.99
+102     60-64           30-39.9\%          2341                88          3.76
+103     60-64           40-49.9\%           168                10          5.95
+
+
+    Age\_range Unemply\_rate\_range  Unpaid\_Count  Total\_Paid\_Count  Percent\_Paid
+115     65-69             5-6.9\%        148892             12234          8.22
+117     65-69             7-8.9\%        133877              8799          6.57
+112     65-69             3-4.9\%         70897              7279         10.27
+118     65-69            9-10.9\%        105599              5816          5.51
+109     65-69           11-14.9\%         94800              4982          5.26
+110     65-69           15-19.9\%         41947              1961          4.67
+108     65-69             0-2.9\%         12194              1149          9.42
+111     65-69           20-29.9\%         18412              1115          6.06
+116     65-69               50\%+         20615               722          3.50
+113     65-69           30-39.9\%          1834                87          4.74
+114     65-69           40-49.9\%           159                12          7.55
+
+
+    Age\_range Unemply\_rate\_range  Unpaid\_Count  Total\_Paid\_Count  Percent\_Paid
+126     70-74             5-6.9\%         94998              7509          7.90
+128     70-74             7-8.9\%         84585              5389          6.37
+123     70-74             3-4.9\%         44684              4174          9.34
+129     70-74            9-10.9\%         64097              3686          5.75
+120     70-74           11-14.9\%         61471              3134          5.10
+121     70-74           15-19.9\%         26848              1341          4.99
+119     70-74             0-2.9\%          7539               727          9.64
+122     70-74           20-29.9\%         11234               663          5.90
+127     70-74               50\%+         13557               387          2.85
+124     70-74           30-39.9\%          1106                70          6.33
+125     70-74           40-49.9\%           114                 5          4.39
+
+
+    Age\_range Unemply\_rate\_range  Unpaid\_Count  Total\_Paid\_Count  Percent\_Paid
+137     75-79             5-6.9\%         54187              2627          4.85
+139     75-79             7-8.9\%         49159              2026          4.12
+140     75-79            9-10.9\%         37197              1444          3.88
+134     75-79             3-4.9\%         25633              1371          5.35
+131     75-79           11-14.9\%         36945              1164          3.15
+132     75-79           15-19.9\%         16001               494          3.09
+130     75-79             0-2.9\%          4815               231          4.80
+133     75-79           20-29.9\%          4879               222          4.55
+138     75-79               50\%+          8236               170          2.06
+135     75-79           30-39.9\%           466                 8          1.72
+136     75-79           40-49.9\%            98                 3          3.06
+
+
+    Age\_range Unemply\_rate\_range  Unpaid\_Count  Total\_Paid\_Count  Percent\_Paid
+147     80-84             5-6.9\%         35334              1229          3.48
+149     80-84             7-8.9\%         30926              1113          3.60
+150     80-84            9-10.9\%         23598               770          3.26
+142     80-84           11-14.9\%         24626               680          2.76
+145     80-84             3-4.9\%         15382               632          4.11
+143     80-84           15-19.9\%         12001               318          2.65
+144     80-84           20-29.9\%          3630               156          4.30
+148     80-84               50\%+          5387               102          1.89
+141     80-84             0-2.9\%          2481                94          3.79
+146     80-84           30-39.9\%           529                17          3.21
+
+
+    Age\_range Unemply\_rate\_range  Unpaid\_Count  Total\_Paid\_Count  Percent\_Paid
+158     85-89             5-6.9\%         28810               930          3.23
+160     85-89             7-8.9\%         26443               712          2.69
+152     85-89           11-14.9\%         20208               462          2.29
+155     85-89             3-4.9\%         14109               446          3.16
+161     85-89            9-10.9\%         17313               427          2.47
+153     85-89           15-19.9\%          8765               217          2.48
+154     85-89           20-29.9\%          3160               121          3.83
+159     85-89               50\%+          4193                75          1.79
+151     85-89             0-2.9\%          2325                68          2.92
+156     85-89           30-39.9\%           331                20          6.04
+157     85-89           40-49.9\%            19                 1          5.26
+
+
+    Age\_range Unemply\_rate\_range  Unpaid\_Count  Total\_Paid\_Count  Percent\_Paid
+168      90 +             5-6.9\%         66122              1404          2.12
+170      90 +             7-8.9\%         55379               990          1.79
+166      90 +             3-4.9\%         34723               693          2.00
+171      90 +            9-10.9\%         35577               543          1.53
+163      90 +           11-14.9\%         39945               533          1.33
+164      90 +           15-19.9\%         16452               207          1.26
+169      90 +               50\%+          9063                99          1.09
+162      90 +             0-2.9\%          4451                79          1.77
+165      90 +           20-29.9\%          4739                67          1.41
+167      90 +           30-39.9\%           408                 3          0.74
+
+
+
+    \end{Verbatim}
+
+    \hypertarget{dealing-with-null-values}{%
+\subsection{\# Dealing with null
+values}\label{dealing-with-null-values}}
+
+    \hypertarget{dealing-with-null-values---paid-dataset}{%
+\subsection{Dealing with null values - Paid
+dataset}\label{dealing-with-null-values---paid-dataset}}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}39}]:} \PY{n}{paid}\PY{o}{.}\PY{n}{isna}\PY{p}{(}\PY{p}{)}\PY{o}{.}\PY{n}{sum}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}39}]:} Account\_ID                        0
+         Entity\_ID                         0
+         Seller\_Type                       0
+         Creditor\_Name                  6017
+         Closure\_Type                      0
+         Entity\_City                     110
+         Entity\_State                     85
+         Entity\_Zip                      815
+         Median\_Household\_Income           0
+         Total\_Paid                     1992
+         Number\_of\_payments             1992
+         Percent\_Paid                   1992
+         Invoice\_bal                       0
+         Age                               0
+         Target                            0
+         Income\_level                      0
+         Age\_MedIncome                     0
+         Invbal\_MedIncome                  0
+         Invbal\_Age                        0
+         Paid                              0
+         unemployment\_rate              7938
+         labor\_force\_participation      7689
+         education\_highschool           7705
+         education\_college\_or\_above     7705
+         home\_value                    12812
+         rent\_burden                   18528
+         age\_20s                        7689
+         age\_30s                        7689
+         age\_40s                        7689
+         age\_50s                        7689
+         age\_60s                        7689
+         age\_70s                        7689
+         age\_over\_80                    7689
+         Age\_range                         0
+         Unemply\_rate\_range                0
+         Labor\_force\_part\_range            0
+         dtype: int64
+\end{Verbatim}
+            
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}40}]:} \PY{n}{paid}\PY{o}{.}\PY{n}{shape}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}40}]:} (556536, 36)
+\end{Verbatim}
+            
+    We are comfortable in removing the null values because we're only
+deleting less than 0.5\% of the data.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}41}]:} \PY{n}{paid}\PY{o}{.}\PY{n}{dropna}\PY{p}{(}\PY{n}{inplace}\PY{o}{=}\PY{k+kc}{True}\PY{p}{)}
+\end{Verbatim}
+
+
+    \hypertarget{age_range---unemployment_rate---labor_force_participation---income_level}{%
+\subsection{\# Age\_range - Unemployment\_rate -
+Labor\_force\_participation -
+Income\_level}\label{age_range---unemployment_rate---labor_force_participation---income_level}}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}42}]:} \PY{c+c1}{\PYZsh{}creating a function to bin ages }
+         \PY{k}{def} \PY{n+nf}{labor\PYZus{}force}\PY{p}{(}\PY{n}{row}\PY{p}{)}\PY{p}{:}
+         
+             \PY{k}{if} \PY{n}{row} \PY{o}{\PYZgt{}}\PY{o}{=} \PY{l+m+mi}{0} \PY{o+ow}{and} \PY{n}{row} \PY{o}{\PYZlt{}} \PY{l+m+mi}{20}\PY{p}{:} 
+                 \PY{k}{return} \PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{lower\PYZus{}than\PYZus{}20}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+             \PY{k}{elif} \PY{n}{row} \PY{o}{\PYZgt{}}\PY{o}{=} \PY{l+m+mi}{20} \PY{o+ow}{and} \PY{n}{row} \PY{o}{\PYZlt{}} \PY{l+m+mi}{30}\PY{p}{:}
+                 \PY{k}{return} \PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{20\PYZhy{}29.9}\PY{l+s+s1}{\PYZpc{}}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+             \PY{k}{elif} \PY{n}{row} \PY{o}{\PYZgt{}}\PY{o}{=} \PY{l+m+mi}{30} \PY{o+ow}{and} \PY{n}{row} \PY{o}{\PYZlt{}} \PY{l+m+mi}{40}\PY{p}{:} 
+                 \PY{k}{return} \PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{30\PYZhy{}39.9}\PY{l+s+s1}{\PYZpc{}}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+             \PY{k}{elif} \PY{n}{row} \PY{o}{\PYZgt{}}\PY{o}{=} \PY{l+m+mi}{40} \PY{o+ow}{and} \PY{n}{row} \PY{o}{\PYZlt{}} \PY{l+m+mi}{50}\PY{p}{:} 
+                 \PY{k}{return} \PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{40\PYZhy{}49.9}\PY{l+s+s1}{\PYZpc{}}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+             \PY{k}{elif} \PY{n}{row} \PY{o}{\PYZgt{}}\PY{o}{=} \PY{l+m+mi}{50} \PY{o+ow}{and} \PY{n}{row} \PY{o}{\PYZlt{}} \PY{l+m+mi}{53}\PY{p}{:} 
+                 \PY{k}{return} \PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{50\PYZhy{}52.9}\PY{l+s+s1}{\PYZpc{}}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+             \PY{k}{elif} \PY{n}{row} \PY{o}{\PYZgt{}}\PY{o}{=} \PY{l+m+mi}{53} \PY{o+ow}{and} \PY{n}{row} \PY{o}{\PYZlt{}} \PY{l+m+mi}{56}\PY{p}{:} 
+                 \PY{k}{return} \PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{53\PYZhy{}55.9}\PY{l+s+s1}{\PYZpc{}}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+             \PY{k}{elif} \PY{n}{row} \PY{o}{\PYZgt{}}\PY{o}{=} \PY{l+m+mi}{56} \PY{o+ow}{and} \PY{n}{row} \PY{o}{\PYZlt{}} \PY{l+m+mi}{59}\PY{p}{:} 
+                 \PY{k}{return} \PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{56\PYZhy{}58.9}\PY{l+s+s1}{\PYZpc{}}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+             \PY{k}{elif} \PY{n}{row} \PY{o}{\PYZgt{}}\PY{o}{=} \PY{l+m+mi}{59} \PY{o+ow}{and} \PY{n}{row} \PY{o}{\PYZlt{}} \PY{l+m+mi}{62}\PY{p}{:}
+                 \PY{k}{return} \PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{59\PYZhy{}61.9}\PY{l+s+s1}{\PYZpc{}}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+             \PY{k}{elif} \PY{n}{row} \PY{o}{\PYZgt{}}\PY{o}{=} \PY{l+m+mi}{62} \PY{o+ow}{and} \PY{n}{row} \PY{o}{\PYZlt{}} \PY{l+m+mi}{65}\PY{p}{:} 
+                 \PY{k}{return} \PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{62\PYZhy{}64.9}\PY{l+s+s1}{\PYZpc{}}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+             \PY{k}{elif} \PY{n}{row} \PY{o}{\PYZgt{}}\PY{o}{=} \PY{l+m+mi}{65} \PY{o+ow}{and} \PY{n}{row} \PY{o}{\PYZlt{}} \PY{l+m+mi}{68}\PY{p}{:} 
+                 \PY{k}{return} \PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{65\PYZhy{}67.9}\PY{l+s+s1}{\PYZpc{}}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+             \PY{k}{elif} \PY{n}{row} \PY{o}{\PYZgt{}}\PY{o}{=} \PY{l+m+mi}{68} \PY{o+ow}{and} \PY{n}{row} \PY{o}{\PYZlt{}} \PY{l+m+mi}{71}\PY{p}{:} 
+                 \PY{k}{return} \PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{68\PYZhy{}70.9}\PY{l+s+s1}{\PYZpc{}}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+             \PY{k}{elif} \PY{n}{row} \PY{o}{\PYZgt{}}\PY{o}{=} \PY{l+m+mi}{71} \PY{o+ow}{and} \PY{n}{row} \PY{o}{\PYZlt{}} \PY{l+m+mi}{74}\PY{p}{:}
+                 \PY{k}{return} \PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{71\PYZhy{}73.9}\PY{l+s+s1}{\PYZpc{}}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+             \PY{k}{elif} \PY{n}{row} \PY{o}{\PYZgt{}}\PY{o}{=} \PY{l+m+mi}{74} \PY{o+ow}{and} \PY{n}{row} \PY{o}{\PYZlt{}} \PY{l+m+mi}{77}\PY{p}{:} 
+                 \PY{k}{return} \PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{74\PYZhy{}76.9}\PY{l+s+s1}{\PYZpc{}}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+             \PY{k}{elif} \PY{n}{row} \PY{o}{\PYZgt{}}\PY{o}{=} \PY{l+m+mi}{77} \PY{o+ow}{and} \PY{n}{row} \PY{o}{\PYZlt{}} \PY{l+m+mi}{80}\PY{p}{:} 
+                 \PY{k}{return} \PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{77\PYZhy{}79.9}\PY{l+s+s1}{\PYZpc{}}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+             \PY{k}{else}\PY{p}{:} 
+                 \PY{k}{return} \PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{80}\PY{l+s+s1}{\PYZpc{}}\PY{l+s+s1}{+}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}43}]:} \PY{n}{paid}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Labor\PYZus{}force\PYZus{}part\PYZus{}range}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{=} \PY{n}{paid}\PY{o}{.}\PY{n}{labor\PYZus{}force\PYZus{}participation}\PY{o}{.}\PY{n}{apply}\PY{p}{(}\PY{n}{labor\PYZus{}force}\PY{p}{)}
+         \PY{n}{unpaid}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Labor\PYZus{}force\PYZus{}part\PYZus{}range}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{=} \PY{n}{unpaid}\PY{o}{.}\PY{n}{labor\PYZus{}force\PYZus{}participation}\PY{o}{.}\PY{n}{apply}\PY{p}{(}\PY{n}{labor\PYZus{}force}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}44}]:} \PY{n}{c} \PY{o}{=} \PY{n}{paid}\PY{o}{.}\PY{n}{groupby}\PY{p}{(}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Age\PYZus{}range}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Unemply\PYZus{}rate\PYZus{}range}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Labor\PYZus{}force\PYZus{}part\PYZus{}range}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Income\PYZus{}level}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{)}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Total\PYZus{}Paid}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{o}{.}\PY{n}{size}\PY{p}{(}\PY{p}{)}\PY{o}{.}\PY{n}{reset\PYZus{}index}\PY{p}{(}\PY{p}{)}
+         \PY{n}{c}\PY{o}{.}\PY{n}{rename}\PY{p}{(}\PY{n}{columns}\PY{o}{=}\PY{p}{\PYZob{}}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Total\PYZus{}Paid}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Total\PYZus{}Paid\PYZus{}Count}\PY{l+s+s1}{\PYZsq{}}\PY{p}{\PYZcb{}}\PY{p}{,} \PY{n}{inplace}\PY{o}{=}\PY{k+kc}{True}\PY{p}{)}
+         
+         \PY{n}{d} \PY{o}{=} \PY{n}{unpaid}\PY{o}{.}\PY{n}{groupby}\PY{p}{(}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Age\PYZus{}range}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Unemply\PYZus{}rate\PYZus{}range}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Labor\PYZus{}force\PYZus{}part\PYZus{}range}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Income\PYZus{}level}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{)}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Total\PYZus{}Paid}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{o}{.}\PY{n}{size}\PY{p}{(}\PY{p}{)}\PY{o}{.}\PY{n}{reset\PYZus{}index}\PY{p}{(}\PY{p}{)}
+         \PY{n}{d}\PY{o}{.}\PY{n}{rename}\PY{p}{(}\PY{n}{columns}\PY{o}{=}\PY{p}{\PYZob{}}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Total\PYZus{}Paid}\PY{l+s+s1}{\PYZsq{}} \PY{p}{:} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Unpaid\PYZus{}Count}\PY{l+s+s1}{\PYZsq{}}\PY{p}{\PYZcb{}}\PY{p}{,} \PY{n}{inplace}\PY{o}{=}\PY{k+kc}{True}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}45}]:} \PY{n}{c}\PY{p}{[}\PY{p}{(}\PY{n}{c}\PY{o}{.}\PY{n}{Age\PYZus{}range}\PY{o}{==} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{45\PYZhy{}49}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)} \PY{o}{\PYZam{}} \PY{p}{(}\PY{n}{c}\PY{o}{.}\PY{n}{Total\PYZus{}Paid\PYZus{}Count} \PY{o}{\PYZgt{}}\PY{o}{=} \PY{l+m+mi}{2000}\PY{p}{)}\PY{p}{]}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}45}]:}      Age\_range Unemply\_rate\_range Labor\_force\_part\_range Income\_level  \textbackslash{}
+         2022     45-49             3-4.9\%               62-64.9\%   50k\_to\_75k   
+         2027     45-49             3-4.9\%               65-67.9\%   50k\_to\_75k   
+         2097     45-49             5-6.9\%               62-64.9\%   50k\_to\_75k   
+         2103     45-49             5-6.9\%               65-67.9\%   50k\_to\_75k   
+         2107     45-49             5-6.9\%               68-70.9\%   50k\_to\_75k   
+         2156     45-49             7-8.9\%               62-64.9\%   50k\_to\_75k   
+         2161     45-49             7-8.9\%               65-67.9\%   50k\_to\_75k   
+         
+               Total\_Paid\_Count  
+         2022              2586  
+         2027              2367  
+         2097              3828  
+         2103              4444  
+         2107              3120  
+         2156              2914  
+         2161              2720  
+\end{Verbatim}
+            
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}46}]:} \PY{n}{cd} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{merge}\PY{p}{(}\PY{n}{d}\PY{p}{,} \PY{n}{c}\PY{p}{,} \PY{n}{on}\PY{o}{=}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Age\PYZus{}range}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Unemply\PYZus{}rate\PYZus{}range}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Labor\PYZus{}force\PYZus{}part\PYZus{}range}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Income\PYZus{}level}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}47}]:} \PY{n}{cd}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Percent\PYZus{}Paid}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{=} \PY{n+nb}{round}\PY{p}{(}\PY{p}{(}\PY{n}{cd}\PY{o}{.}\PY{n}{Total\PYZus{}Paid\PYZus{}Count} \PY{o}{/} \PY{n}{cd}\PY{o}{.}\PY{n}{Unpaid\PYZus{}Count}\PY{p}{)}\PY{o}{*}\PY{l+m+mi}{100}\PY{p}{,} \PY{l+m+mi}{2}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}48}]:} \PY{n}{paid}\PY{p}{[}\PY{n}{paid}\PY{o}{.}\PY{n}{Age\PYZus{}range} \PY{o}{==} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{45\PYZhy{}49}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{o}{.}\PY{n}{shape}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}48}]:} (84349, 36)
+\end{Verbatim}
+            
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}49}]:} \PY{n}{cd}\PY{p}{[}\PY{p}{(}\PY{n}{cd}\PY{o}{.}\PY{n}{Age\PYZus{}range}\PY{o}{==}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{45\PYZhy{}49}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}\PY{p}{]}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}49}]:}      Age\_range Unemply\_rate\_range Labor\_force\_part\_range  Income\_level  \textbackslash{}
+         1809     45-49             0-2.9\%               20-29.9\%    25k\_to\_35k   
+         1810     45-49             0-2.9\%               30-39.9\%    25k\_to\_35k   
+         1811     45-49             0-2.9\%               30-39.9\%    35k\_to\_50k   
+         1812     45-49             0-2.9\%               30-39.9\%    50k\_to\_75k   
+         1813     45-49             0-2.9\%               40-49.9\%    25k\_to\_35k   
+         1814     45-49             0-2.9\%               40-49.9\%    35k\_to\_50k   
+         1815     45-49             0-2.9\%               40-49.9\%    50k\_to\_75k   
+         1816     45-49             0-2.9\%               50-52.9\%    25k\_to\_35k   
+         1817     45-49             0-2.9\%               50-52.9\%    35k\_to\_50k   
+         1818     45-49             0-2.9\%               50-52.9\%    50k\_to\_75k   
+         1819     45-49             0-2.9\%               53-55.9\%    25k\_to\_35k   
+         1820     45-49             0-2.9\%               53-55.9\%    35k\_to\_50k   
+         1821     45-49             0-2.9\%               53-55.9\%    50k\_to\_75k   
+         1822     45-49             0-2.9\%               53-55.9\%   75k\_to\_100k   
+         1823     45-49             0-2.9\%               56-58.9\%    35k\_to\_50k   
+         1824     45-49             0-2.9\%               56-58.9\%    50k\_to\_75k   
+         1825     45-49             0-2.9\%               59-61.9\%     0ver\_150k   
+         1826     45-49             0-2.9\%               59-61.9\%  100k\_to\_150k   
+         1827     45-49             0-2.9\%               59-61.9\%    35k\_to\_50k   
+         1828     45-49             0-2.9\%               59-61.9\%    50k\_to\_75k   
+         1829     45-49             0-2.9\%               62-64.9\%     0ver\_150k   
+         1830     45-49             0-2.9\%               62-64.9\%  100k\_to\_150k   
+         1831     45-49             0-2.9\%               62-64.9\%    35k\_to\_50k   
+         1832     45-49             0-2.9\%               62-64.9\%    50k\_to\_75k   
+         1833     45-49             0-2.9\%               62-64.9\%   75k\_to\_100k   
+         1834     45-49             0-2.9\%               65-67.9\%  100k\_to\_150k   
+         1835     45-49             0-2.9\%               65-67.9\%    35k\_to\_50k   
+         1836     45-49             0-2.9\%               65-67.9\%    50k\_to\_75k   
+         1837     45-49             0-2.9\%               65-67.9\%   75k\_to\_100k   
+         1838     45-49             0-2.9\%               68-70.9\%  100k\_to\_150k   
+         {\ldots}        {\ldots}                {\ldots}                    {\ldots}           {\ldots}   
+         2183     45-49            9-10.9\%               56-58.9\%    25k\_to\_35k   
+         2184     45-49            9-10.9\%               56-58.9\%    35k\_to\_50k   
+         2185     45-49            9-10.9\%               56-58.9\%    50k\_to\_75k   
+         2186     45-49            9-10.9\%               56-58.9\%   75k\_to\_100k   
+         2187     45-49            9-10.9\%               59-61.9\%    25k\_to\_35k   
+         2188     45-49            9-10.9\%               59-61.9\%    35k\_to\_50k   
+         2189     45-49            9-10.9\%               59-61.9\%    50k\_to\_75k   
+         2190     45-49            9-10.9\%               59-61.9\%   75k\_to\_100k   
+         2191     45-49            9-10.9\%               62-64.9\%  100k\_to\_150k   
+         2192     45-49            9-10.9\%               62-64.9\%    25k\_to\_35k   
+         2193     45-49            9-10.9\%               62-64.9\%    35k\_to\_50k   
+         2194     45-49            9-10.9\%               62-64.9\%    50k\_to\_75k   
+         2195     45-49            9-10.9\%               62-64.9\%   75k\_to\_100k   
+         2196     45-49            9-10.9\%               65-67.9\%    25k\_to\_35k   
+         2197     45-49            9-10.9\%               65-67.9\%    35k\_to\_50k   
+         2198     45-49            9-10.9\%               65-67.9\%    50k\_to\_75k   
+         2199     45-49            9-10.9\%               65-67.9\%   75k\_to\_100k   
+         2200     45-49            9-10.9\%               68-70.9\%  100k\_to\_150k   
+         2201     45-49            9-10.9\%               68-70.9\%    35k\_to\_50k   
+         2202     45-49            9-10.9\%               68-70.9\%    50k\_to\_75k   
+         2203     45-49            9-10.9\%               68-70.9\%   75k\_to\_100k   
+         2204     45-49            9-10.9\%               71-73.9\%    35k\_to\_50k   
+         2205     45-49            9-10.9\%               71-73.9\%    50k\_to\_75k   
+         2206     45-49            9-10.9\%               71-73.9\%   75k\_to\_100k   
+         2207     45-49            9-10.9\%               74-76.9\%    35k\_to\_50k   
+         2208     45-49            9-10.9\%               74-76.9\%    50k\_to\_75k   
+         2209     45-49            9-10.9\%               74-76.9\%   75k\_to\_100k   
+         2210     45-49            9-10.9\%                   80\%+   75k\_to\_100k   
+         2211     45-49            9-10.9\%          lower\_than\_20    35k\_to\_50k   
+         2212     45-49            9-10.9\%          lower\_than\_20    50k\_to\_75k   
+         
+               Unpaid\_Count  Total\_Paid\_Count  Percent\_Paid  
+         1809            81                 2          2.47  
+         1810           215                 3          1.40  
+         1811          1011                 1          0.10  
+         1812          1061                 3          0.28  
+         1813           797                31          3.89  
+         1814          1817                25          1.38  
+         1815          2197                67          3.05  
+         1816           114                 1          0.88  
+         1817          1010                27          2.67  
+         1818           917                36          3.93  
+         1819           199                 2          1.01  
+         1820          1688                34          2.01  
+         1821           924                18          1.95  
+         1822            44                 3          6.82  
+         1823          1919                50          2.61  
+         1824          2298                60          2.61  
+         1825             2                 4        200.00  
+         1826            56                 2          3.57  
+         1827           874                40          4.58  
+         1828          1304                82          6.29  
+         1829             8                 1         12.50  
+         1830             1                 2        200.00  
+         1831           627                20          3.19  
+         1832          1608               113          7.03  
+         1833          2133               430         20.16  
+         1834             7                 1         14.29  
+         1835          1246                45          3.61  
+         1836          2527               194          7.68  
+         1837          2213               447         20.20  
+         1838           132                18         13.64  
+         {\ldots}            {\ldots}               {\ldots}           {\ldots}  
+         2183          3181                76          2.39  
+         2184         23419               704          3.01  
+         2185         26322               802          3.05  
+         2186          1825                29          1.59  
+         2187          2234                41          1.84  
+         2188         16666               583          3.50  
+         2189         21491               814          3.79  
+         2190           369                17          4.61  
+         2191            29                 1          3.45  
+         2192            85                 4          4.71  
+         2193         14086               576          4.09  
+         2194         19066              1039          5.45  
+         2195           408                10          2.45  
+         2196           288                14          4.86  
+         2197          7822               467          5.97  
+         2198         26680              1138          4.27  
+         2199          3852               165          4.28  
+         2200             5                 1         20.00  
+         2201          3650               147          4.03  
+         2202         14989               531          3.54  
+         2203           551                28          5.08  
+         2204           436                 9          2.06  
+         2205          5766               221          3.83  
+         2206            19                 2         10.53  
+         2207            77                 1          1.30  
+         2208            70                 5          7.14  
+         2209            53                 4          7.55  
+         2210            47                 4          8.51  
+         2211           121                 2          1.65  
+         2212           308                 9          2.92  
+         
+         [404 rows x 7 columns]
+\end{Verbatim}
+            
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}50}]:} \PY{n}{cd}\PY{p}{[}\PY{p}{(}\PY{n}{cd}\PY{o}{.}\PY{n}{Age\PYZus{}range}\PY{o}{==}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{45\PYZhy{}49}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)} \PY{o}{\PYZam{}} \PY{p}{(}\PY{n}{cd}\PY{o}{.}\PY{n}{Total\PYZus{}Paid\PYZus{}Count} \PY{o}{\PYZgt{}}\PY{o}{=}\PY{l+m+mi}{100}\PY{p}{)} \PY{o}{\PYZam{}} \PY{p}{(}\PY{n}{cd}\PY{o}{.}\PY{n}{Percent\PYZus{}Paid} \PY{o}{\PYZgt{}}\PY{o}{=}\PY{l+m+mi}{10}\PY{p}{)}\PY{p}{]}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}50}]:}      Age\_range Unemply\_rate\_range Labor\_force\_part\_range  Income\_level  \textbackslash{}
+         1833     45-49             0-2.9\%               62-64.9\%   75k\_to\_100k   
+         1837     45-49             0-2.9\%               65-67.9\%   75k\_to\_100k   
+         2007     45-49             3-4.9\%               62-64.9\%    50k\_to\_75k   
+         2008     45-49             3-4.9\%               62-64.9\%   75k\_to\_100k   
+         2010     45-49             3-4.9\%               65-67.9\%  100k\_to\_150k   
+         2013     45-49             3-4.9\%               65-67.9\%   75k\_to\_100k   
+         2015     45-49             3-4.9\%               68-70.9\%  100k\_to\_150k   
+         2020     45-49             3-4.9\%               71-73.9\%    35k\_to\_50k   
+         2085     45-49             5-6.9\%               65-67.9\%  100k\_to\_150k   
+         
+               Unpaid\_Count  Total\_Paid\_Count  Percent\_Paid  
+         1833          2133               430         20.16  
+         1837          2213               447         20.20  
+         2007         22002              2586         11.75  
+         2008          4219               650         15.41  
+         2010          1163               269         23.13  
+         2013          6993              1080         15.44  
+         2015          1333               135         10.13  
+         2020          4822               616         12.77  
+         2085          3041               446         14.67  
+\end{Verbatim}
+            
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}51}]:} \PY{n}{x} \PY{o}{=} \PY{n}{cd}\PY{p}{[}\PY{p}{(}\PY{n}{cd}\PY{o}{.}\PY{n}{Age\PYZus{}range}\PY{o}{==}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{45\PYZhy{}49}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)} \PY{o}{\PYZam{}} \PY{p}{(}\PY{n}{cd}\PY{o}{.}\PY{n}{Total\PYZus{}Paid\PYZus{}Count} \PY{o}{\PYZgt{}}\PY{o}{=}\PY{l+m+mi}{1000}\PY{p}{)}\PY{p}{]}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}52}]:} \PY{n}{x}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}52}]:}      Age\_range Unemply\_rate\_range Labor\_force\_part\_range Income\_level  \textbackslash{}
+         2007     45-49             3-4.9\%               62-64.9\%   50k\_to\_75k   
+         2012     45-49             3-4.9\%               65-67.9\%   50k\_to\_75k   
+         2013     45-49             3-4.9\%               65-67.9\%  75k\_to\_100k   
+         2017     45-49             3-4.9\%               68-70.9\%   50k\_to\_75k   
+         2070     45-49             5-6.9\%               56-58.9\%   50k\_to\_75k   
+         2077     45-49             5-6.9\%               59-61.9\%   50k\_to\_75k   
+         2082     45-49             5-6.9\%               62-64.9\%   50k\_to\_75k   
+         2087     45-49             5-6.9\%               65-67.9\%   35k\_to\_50k   
+         2088     45-49             5-6.9\%               65-67.9\%   50k\_to\_75k   
+         2092     45-49             5-6.9\%               68-70.9\%   50k\_to\_75k   
+         2096     45-49             5-6.9\%               71-73.9\%   50k\_to\_75k   
+         2131     45-49             7-8.9\%               56-58.9\%   35k\_to\_50k   
+         2140     45-49             7-8.9\%               62-64.9\%   35k\_to\_50k   
+         2141     45-49             7-8.9\%               62-64.9\%   50k\_to\_75k   
+         2146     45-49             7-8.9\%               65-67.9\%   50k\_to\_75k   
+         2194     45-49            9-10.9\%               62-64.9\%   50k\_to\_75k   
+         2198     45-49            9-10.9\%               65-67.9\%   50k\_to\_75k   
+         
+               Unpaid\_Count  Total\_Paid\_Count  Percent\_Paid  
+         2007         22002              2586         11.75  
+         2012         24062              2367          9.84  
+         2013          6993              1080         15.44  
+         2017         18639              1518          8.14  
+         2070         20912              1105          5.28  
+         2077         24345              1174          4.82  
+         2082         43098              3828          8.88  
+         2087         19666              1583          8.05  
+         2088         51213              4444          8.68  
+         2092         45040              3120          6.93  
+         2096         29301              1869          6.38  
+         2131         27768              1070          3.85  
+         2140         25896              1522          5.88  
+         2141         47543              2914          6.13  
+         2146         45336              2720          6.00  
+         2194         19066              1039          5.45  
+         2198         26680              1138          4.27  
+\end{Verbatim}
+            
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}53}]:} \PY{n}{x}\PY{o}{.}\PY{n}{Total\PYZus{}Paid\PYZus{}Count}\PY{o}{.}\PY{n}{sum}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}53}]:} 35077
+\end{Verbatim}
+            
+    Above we've grouped our selection using the features below:
+
+\textbf{Input:} - Age\_range = `45-49' - Umemployment rate range - Labor
+force participation range - Income level - Total Paid Accounts (count)
+with Greater than or eaqual to 1000
+
+\textbf{Observations:} - Within the age range 45-49, we have roughly 84k
+accounts that paid. Using the four differnt features there were a total
+of 404 different combinations, and 13 of them accounted for 35k accounts
+or 39\%.
+
+\textbf{Recommendation:} - Prioritize collection where the majority
+using the 13 combinations first, then collect from others. - That way
+you can spend less attention on the 13 combinations because they have a
+higher likehood of paying, and work the other accounts that has less
+likely likehood of paying, but that are not too far gone. - Prioritize
+on accounts that has historical successes of 10\%+
+\texttt{Percent\_Paid}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}54}]:} \PY{n}{data}\PY{o}{.}\PY{n}{columns}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}54}]:} Index(['Account\_ID', 'Entity\_ID', 'Seller\_Type', 'Creditor\_Name',
+                'Closure\_Type', 'Entity\_City', 'Entity\_State', 'Entity\_Zip',
+                'Median\_Household\_Income', 'Total\_Paid', 'Number\_of\_payments',
+                'Percent\_Paid', 'Invoice\_bal', 'Age', 'Target', 'Income\_level',
+                'Age\_MedIncome', 'Invbal\_MedIncome', 'Invbal\_Age', 'Paid',
+                'unemployment\_rate', 'labor\_force\_participation',
+                'education\_highschool', 'education\_college\_or\_above', 'home\_value',
+                'rent\_burden', 'age\_20s', 'age\_30s', 'age\_40s', 'age\_50s', 'age\_60s',
+                'age\_70s', 'age\_over\_80', 'Age\_range', 'Unemply\_rate\_range',
+                'Labor\_force\_part\_range'],
+               dtype='object')
+\end{Verbatim}
+            
+    \hypertarget{education}{%
+\subsection{\# Education}\label{education}}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}55}]:} \PY{c+c1}{\PYZsh{}creating a function to bin ages }
+         \PY{k}{def} \PY{n+nf}{college}\PY{p}{(}\PY{n}{row}\PY{p}{)}\PY{p}{:}
+         
+             \PY{k}{if} \PY{n}{row} \PY{o}{\PYZgt{}}\PY{o}{=} \PY{l+m+mi}{0} \PY{o+ow}{and} \PY{n}{row} \PY{o}{\PYZlt{}}\PY{o}{=} \PY{l+m+mi}{5}\PY{p}{:} 
+                 \PY{k}{return} \PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{0\PYZhy{}5}\PY{l+s+s1}{\PYZpc{}}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+             \PY{k}{elif} \PY{n}{row} \PY{o}{\PYZgt{}} \PY{l+m+mi}{5} \PY{o+ow}{and} \PY{n}{row} \PY{o}{\PYZlt{}}\PY{o}{=} \PY{l+m+mi}{10}\PY{p}{:}
+                 \PY{k}{return} \PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{5\PYZhy{}10}\PY{l+s+s1}{\PYZpc{}}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+             \PY{k}{elif} \PY{n}{row} \PY{o}{\PYZgt{}} \PY{l+m+mi}{10} \PY{o+ow}{and} \PY{n}{row} \PY{o}{\PYZlt{}}\PY{o}{=} \PY{l+m+mi}{15}\PY{p}{:} 
+                 \PY{k}{return} \PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{10\PYZhy{}15}\PY{l+s+s1}{\PYZpc{}}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+             \PY{k}{elif} \PY{n}{row} \PY{o}{\PYZgt{}} \PY{l+m+mi}{15} \PY{o+ow}{and} \PY{n}{row} \PY{o}{\PYZlt{}}\PY{o}{=} \PY{l+m+mi}{20}\PY{p}{:} 
+                 \PY{k}{return} \PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{15\PYZhy{}20}\PY{l+s+s1}{\PYZpc{}}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+             \PY{k}{elif} \PY{n}{row} \PY{o}{\PYZgt{}} \PY{l+m+mi}{20} \PY{o+ow}{and} \PY{n}{row} \PY{o}{\PYZlt{}}\PY{o}{=} \PY{l+m+mi}{25}\PY{p}{:} 
+                 \PY{k}{return} \PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{20\PYZhy{}25}\PY{l+s+s1}{\PYZpc{}}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+             \PY{k}{elif} \PY{n}{row} \PY{o}{\PYZgt{}} \PY{l+m+mi}{25} \PY{o+ow}{and} \PY{n}{row} \PY{o}{\PYZlt{}}\PY{o}{=} \PY{l+m+mi}{30}\PY{p}{:} 
+                 \PY{k}{return} \PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{25\PYZhy{}30}\PY{l+s+s1}{\PYZpc{}}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+             \PY{k}{elif} \PY{n}{row} \PY{o}{\PYZgt{}} \PY{l+m+mi}{30} \PY{o+ow}{and} \PY{n}{row} \PY{o}{\PYZlt{}}\PY{o}{=} \PY{l+m+mi}{35}\PY{p}{:} 
+                 \PY{k}{return} \PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{30\PYZhy{}35}\PY{l+s+s1}{\PYZpc{}}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+             \PY{k}{elif} \PY{n}{row} \PY{o}{\PYZgt{}} \PY{l+m+mi}{35} \PY{o+ow}{and} \PY{n}{row} \PY{o}{\PYZlt{}}\PY{o}{=} \PY{l+m+mi}{40}\PY{p}{:} 
+                 \PY{k}{return} \PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{35\PYZhy{}40}\PY{l+s+s1}{\PYZpc{}}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+             \PY{k}{elif} \PY{n}{row} \PY{o}{\PYZgt{}} \PY{l+m+mi}{40} \PY{o+ow}{and} \PY{n}{row} \PY{o}{\PYZlt{}}\PY{o}{=} \PY{l+m+mi}{45}\PY{p}{:} 
+                 \PY{k}{return} \PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{40\PYZhy{}45}\PY{l+s+s1}{\PYZpc{}}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+             \PY{k}{elif} \PY{n}{row} \PY{o}{\PYZgt{}} \PY{l+m+mi}{45} \PY{o+ow}{and} \PY{n}{row} \PY{o}{\PYZlt{}}\PY{o}{=} \PY{l+m+mi}{50}\PY{p}{:} 
+                 \PY{k}{return} \PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{45\PYZhy{}50}\PY{l+s+s1}{\PYZpc{}}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+             \PY{k}{elif} \PY{n}{row} \PY{o}{\PYZgt{}} \PY{l+m+mi}{50} \PY{o+ow}{and} \PY{n}{row} \PY{o}{\PYZlt{}}\PY{o}{=} \PY{l+m+mi}{55}\PY{p}{:} 
+                 \PY{k}{return} \PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{50\PYZhy{}55}\PY{l+s+s1}{\PYZpc{}}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+             \PY{k}{elif} \PY{n}{row} \PY{o}{\PYZgt{}} \PY{l+m+mi}{55} \PY{o+ow}{and} \PY{n}{row} \PY{o}{\PYZlt{}}\PY{o}{=} \PY{l+m+mi}{60}\PY{p}{:} 
+                 \PY{k}{return} \PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{55\PYZhy{}60}\PY{l+s+s1}{\PYZpc{}}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+             \PY{k}{elif} \PY{n}{row} \PY{o}{\PYZgt{}} \PY{l+m+mi}{60} \PY{o+ow}{and} \PY{n}{row} \PY{o}{\PYZlt{}}\PY{o}{=} \PY{l+m+mi}{65}\PY{p}{:} 
+                 \PY{k}{return} \PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{60\PYZhy{}65}\PY{l+s+s1}{\PYZpc{}}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+             \PY{k}{elif} \PY{n}{row} \PY{o}{\PYZgt{}} \PY{l+m+mi}{65} \PY{o+ow}{and} \PY{n}{row} \PY{o}{\PYZlt{}}\PY{o}{=} \PY{l+m+mi}{70}\PY{p}{:} 
+                 \PY{k}{return} \PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{65\PYZhy{}70}\PY{l+s+s1}{\PYZpc{}}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+             \PY{k}{else}\PY{p}{:}
+                 \PY{k}{return} \PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{70}\PY{l+s+s1}{\PYZpc{}}\PY{l+s+s1}{+}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}56}]:} \PY{n}{paid}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Education\PYZus{}college}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{=} \PY{n}{paid}\PY{o}{.}\PY{n}{education\PYZus{}college\PYZus{}or\PYZus{}above}\PY{o}{.}\PY{n}{apply}\PY{p}{(}\PY{n}{college}\PY{p}{)}
+         \PY{n}{unpaid}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Education\PYZus{}college}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{=} \PY{n}{unpaid}\PY{o}{.}\PY{n}{education\PYZus{}college\PYZus{}or\PYZus{}above}\PY{o}{.}\PY{n}{apply}\PY{p}{(}\PY{n}{college}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}57}]:} \PY{n}{e} \PY{o}{=} \PY{n}{paid}\PY{o}{.}\PY{n}{groupby}\PY{p}{(}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Age\PYZus{}range}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Education\PYZus{}college}\PY{l+s+s1}{\PYZsq{}} \PY{p}{,}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Unemply\PYZus{}rate\PYZus{}range}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Income\PYZus{}level}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{)}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Total\PYZus{}Paid}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{o}{.}\PY{n}{size}\PY{p}{(}\PY{p}{)}\PY{o}{.}\PY{n}{reset\PYZus{}index}\PY{p}{(}\PY{p}{)}
+         \PY{n}{e}\PY{o}{.}\PY{n}{rename}\PY{p}{(}\PY{n}{columns}\PY{o}{=}\PY{p}{\PYZob{}}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Total\PYZus{}Paid}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Total\PYZus{}Paid\PYZus{}Count}\PY{l+s+s1}{\PYZsq{}}\PY{p}{\PYZcb{}}\PY{p}{,} \PY{n}{inplace}\PY{o}{=}\PY{k+kc}{True}\PY{p}{)}
+         
+         \PY{n}{f} \PY{o}{=} \PY{n}{unpaid}\PY{o}{.}\PY{n}{groupby}\PY{p}{(}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Age\PYZus{}range}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Education\PYZus{}college}\PY{l+s+s1}{\PYZsq{}} \PY{p}{,}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Unemply\PYZus{}rate\PYZus{}range}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Income\PYZus{}level}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{)}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Total\PYZus{}Paid}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{o}{.}\PY{n}{size}\PY{p}{(}\PY{p}{)}\PY{o}{.}\PY{n}{reset\PYZus{}index}\PY{p}{(}\PY{p}{)}
+         \PY{n}{f}\PY{o}{.}\PY{n}{rename}\PY{p}{(}\PY{n}{columns}\PY{o}{=}\PY{p}{\PYZob{}}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Total\PYZus{}Paid}\PY{l+s+s1}{\PYZsq{}} \PY{p}{:} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Unpaid\PYZus{}Count}\PY{l+s+s1}{\PYZsq{}}\PY{p}{\PYZcb{}}\PY{p}{,} \PY{n}{inplace}\PY{o}{=}\PY{k+kc}{True}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}84}]:} \PY{n}{ef} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{merge}\PY{p}{(}\PY{n}{f}\PY{p}{,}\PY{n}{e}\PY{p}{,} \PY{n}{on}\PY{o}{=}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Age\PYZus{}range}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Education\PYZus{}college}\PY{l+s+s1}{\PYZsq{}} \PY{p}{,}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Unemply\PYZus{}rate\PYZus{}range}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Income\PYZus{}level}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{,} \PY{p}{)}
+         \PY{n}{ef}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Percent\PYZus{}Paid}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{=} \PY{n+nb}{round}\PY{p}{(}\PY{p}{(}\PY{n}{ef}\PY{o}{.}\PY{n}{Total\PYZus{}Paid\PYZus{}Count} \PY{o}{/} \PY{n}{ef}\PY{o}{.}\PY{n}{Unpaid\PYZus{}Count}\PY{p}{)}\PY{o}{*}\PY{l+m+mi}{100}\PY{p}{,} \PY{l+m+mi}{2}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}86}]:} \PY{n}{ef}\PY{p}{[}\PY{p}{(}\PY{n}{ef}\PY{o}{.}\PY{n}{Age\PYZus{}range} \PY{o}{==}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{45\PYZhy{}49}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)} \PY{o}{\PYZam{}} \PY{p}{(}\PY{n}{ef}\PY{o}{.}\PY{n}{Total\PYZus{}Paid\PYZus{}Count} \PY{o}{\PYZgt{}}\PY{o}{=}\PY{l+m+mi}{1000}\PY{p}{)}\PY{p}{]}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}86}]:}      Age\_range Education\_college Unemply\_rate\_range Income\_level  \textbackslash{}
+         1833     45-49            10-15\%           11-14.9\%   35k\_to\_50k   
+         1834     45-49            10-15\%           11-14.9\%   50k\_to\_75k   
+         1852     45-49            10-15\%             5-6.9\%   35k\_to\_50k   
+         1853     45-49            10-15\%             5-6.9\%   50k\_to\_75k   
+         1858     45-49            10-15\%             7-8.9\%   35k\_to\_50k   
+         1864     45-49            10-15\%            9-10.9\%   35k\_to\_50k   
+         1872     45-49            15-20\%           11-14.9\%   35k\_to\_50k   
+         1873     45-49            15-20\%           11-14.9\%   50k\_to\_75k   
+         1893     45-49            15-20\%             5-6.9\%   35k\_to\_50k   
+         1894     45-49            15-20\%             5-6.9\%   50k\_to\_75k   
+         1897     45-49            15-20\%             7-8.9\%   35k\_to\_50k   
+         1898     45-49            15-20\%             7-8.9\%   50k\_to\_75k   
+         1902     45-49            15-20\%            9-10.9\%   35k\_to\_50k   
+         1903     45-49            15-20\%            9-10.9\%   50k\_to\_75k   
+         1927     45-49            20-25\%             5-6.9\%   50k\_to\_75k   
+         1931     45-49            20-25\%             7-8.9\%   35k\_to\_50k   
+         1932     45-49            20-25\%             7-8.9\%   50k\_to\_75k   
+         1936     45-49            20-25\%            9-10.9\%   50k\_to\_75k   
+         1950     45-49            25-30\%             3-4.9\%   35k\_to\_50k   
+         1954     45-49            25-30\%             5-6.9\%   50k\_to\_75k   
+         1957     45-49            25-30\%             7-8.9\%   50k\_to\_75k   
+         1976     45-49            30-35\%             3-4.9\%   50k\_to\_75k   
+         1981     45-49            30-35\%             5-6.9\%   50k\_to\_75k   
+         1986     45-49            30-35\%             7-8.9\%   50k\_to\_75k   
+         2001     45-49            35-40\%             3-4.9\%   50k\_to\_75k   
+         2005     45-49            35-40\%             5-6.9\%   50k\_to\_75k   
+         2026     45-49            40-45\%             5-6.9\%   50k\_to\_75k   
+         2041     45-49            45-50\%             3-4.9\%   50k\_to\_75k   
+         2046     45-49            45-50\%             5-6.9\%   50k\_to\_75k   
+         
+               Unpaid\_Count  Total\_Paid\_Count  Percent\_Paid  
+         1833         42628              1630          3.82  
+         1834         33564              1318          3.93  
+         1852         35059              1106          3.15  
+         1853         26178              1061          4.05  
+         1858         39055              1412          3.62  
+         1864         32413              1028          3.17  
+         1872         36549              1324          3.62  
+         1873         33300              1113          3.34  
+         1893         32574              1324          4.06  
+         1894         37044              1745          4.71  
+         1897         46493              2171          4.67  
+         1898         43435              2140          4.93  
+         1902         35794              1337          3.74  
+         1903         41632              1825          4.38  
+         1927         35847              2453          6.84  
+         1931         24798              1207          4.87  
+         1932         41911              2041          4.87  
+         1936         36641              1273          3.47  
+         1950          8963              1073         11.97  
+         1954         47002              2967          6.31  
+         1957         29464              1539          5.22  
+         1976         16860              1639          9.72  
+         1981         24352              1793          7.36  
+         1986         19423              1276          6.57  
+         2001         11967              1377         11.51  
+         2005         24267              2197          9.05  
+         2026         19438              2041         10.50  
+         2041         10082              1024         10.16  
+         2046         17425              1965         11.28  
+\end{Verbatim}
+            
+    \hypertarget{seller_type}{%
+\subsection{\# Seller\_Type}\label{seller_type}}
+
+Below is a comparison of \texttt{Seller\_Type}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}68}]:} \PY{n}{seller\PYZus{}type} \PY{o}{=} \PY{n}{dataSeller\PYZus{}Type}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+
+        ---------------------------------------------------------------------------
+
+        NameError                                 Traceback (most recent call last)
+
+        <ipython-input-68-d53f578a1562> in <module>()
+    ----> 1 seller\_type = dataSeller\_Type
+    
+
+        NameError: name 'dataSeller\_Type' is not defined
+
+    \end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor} }]:} \PY{n}{seller\PYZus{}type}\PY{o}{.}\PY{n}{head}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+
+
+    % Add a bibliography block to the postdoc
+    
+    
+    
+    \end{document}
