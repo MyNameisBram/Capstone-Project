@@ -1,114 +1,220 @@
 
-# Module 5 - Final Project Requirements
 
-## Introduction
-
-In this lesson, we'll discuss the requirements and expectations for the Module 5 Capstone Project!
-
-## Objectives
-
-You will be able to:
-
-* Describe all required aspects of the final project for Module 5
-* Describe all required deliverables
-* Describe what constitutes a successful project
-* Describe what the experience of the project review should be like
+# README
+# Abstract
+---
+Collection agencies spends millions of dollars sending letters and making phone calls in order to potentially receive some sort of payment from the debtor. Most of these companies are blindly sending letters and making phone calls to make an effort to retain some form of payment. Data science methods will be applied in attempt to increase right party contact, filter and prioritize accounts, in hopes to increasing collection efficiency and decreasing operational cost. 
 
 
-### Final Project Requirements
-
-Congratulations on making it to module 5! It's been a long journey, but we can finally see the light at the end of the tunnel!
-
-<center><img src='end-of-tunnel.gif'>
-<strong><em>Actual Footage of you seeing the light at the end of the tunnel</strong></em>
-</center>
-
-Now that you've learned everything we have to teach you, it's time to show off and flex your data science muscles with your own **_Capstone Project_**! This project will allow you to showcase everything you've learned as a data scientist to by completing a professional-level data science project of your choosing. This project will be significantly larger than any project you've completed so far, and will be the crown jewel of your portfolio. A strong capstone project is the single most important thing you can do to get the attention of potential employers, so be prepared to put as much effort into this project as possible--the results are **_worth it!_**
-
-<center><img src='milkshake.gif'>
-<strong><em>Your <s>milkshake</s> portfolio brings all the <s>boys</s> employers to <s>the yard</s> your inbox! </strong></em>
-</center>
-
-Let's take a look at the project requirements.
-
-### Topic requirements
-The projects are in a domain of your choosing.  Your project does not have to answer just one question, but may try to answer multiple questions in a domain, or subsequent questions.  (e.g. Now that we know _X_, what's the next question that comes from this?)  When choosing a topic, try to think through the "So what?" of your question.  
-
-* What are the possible outcomes you think you will find? These should be both mutually exclusive and collectively exhaustive. Why do these matter?
-* How could a company or individual make use of your findings to benefit them? What about your findings are _actionable_?
-
-You're completely free to choose any project topic that interests you. However, the project scope must be end-to-end, from data sourcing and cleaning all the way through tuning and analysis of your trained model(s).
-
-Make sure to plan in advance for the feasibility of the question in the time allowed--consider the following questions when selecting your project topic:
-
-* What version this question would allow me to find an answer in 2-3 days?
-* What version of this question would allow me/motivate me to work on this problem even after completing Flatiron School?
-
-### Technical Requirements
-
-Your project must meet the following technical requirements:
-
-1. **_No Off-The-Shelf Datasets_**. This project is a chance for you to highlight your critical thinking and data gathering skills by finding the perfect dataset to answer your question. If a pre-existing dataset exists that you'd like to use, it is okay to use it in your project. However, you should consider combining it with other existing sources of data, modifying the dataset through feature engineering. The goal here is to showcase your ability to find and work with data, so just grabbing Boston Housing Dataset or the MNIST dataset is out of the question. 
-
-2. **_Strong Data Exploration, with at least 4 relevant data visualizations._** Think of this project as a way for you to showcase your best possible work in every area that matters. There are few skills that impress employers more than the ability to dive into a new dataset and produce engaging visualizations that communicate important information. For this project, anything worth knowing is worth visualizing. Consider all that you have learned, and don't be afraid to dig into more advanced visualization libraries like seaborn to see what you make! You should make use of visualizations whenever possible during this project, not just during the Data Exploration phase--for instance, consider visualizing your confusion matrices rather than just printing them out as text!
-
-3. **_Makes use of Supervised Learning_**. This requirement dovetails with having a well-defined question, because you'll make use of supervised learning to find the answer! It is both acceptable and encouraged to make use of **_Unsupervised Learning_** techniques as needed in your project (for instance, segmentation with clustering algorithms), but the supervised learning should play a central role in answering your question. 
-
-4. **_Explicitly makes use of a Data Science Process such as OSEMN or CRISP-DM_**. This part is fairly straightforward--you should select a Data Science Process to use and then use this to give structure to your project. Each section should be clearly delineated in your Jupyter Notebook.
-
-5. **_A well-defined question, with a well-defined answer._** Your project should clearly state the question you are trying to answer, and provide any background context needed to understand it. For instance, if you are trying to detect faultlines using Earthquake data, you should provide a brief primer on both the topic and your dataset so that the reader can better understand your topic and approach. Similarly, the findings of your project should be clearly communicated. Do not just tell your audience the final accuracy of your models--be sure to answer "big picture" questions as well. For instance--why are these findings important or useful? Would you recommend shipping this model to production, or is more work needed? Who are these findings useful to, and why should they care? **_NOTE:_** Inconclusive results are okay--from a purely scientific perspective, they are no more or less important or valuable than any other kinds of results. If your results are inconclusive, you should discuss what your next steps would be from there. For instance, what do you think it would take to get conclusive results--more data? Different data that was unavailable? Both? 
+**Example:** mailing 500k (arbitrary account numbers) letters to pre-screened individuals, who have a higher likelihood of paying vs. mailing letters to all 2 million individuals. At \\$0.15 a letter, total cost of \\$300k, which will save the company \\$225k or 75% every time they plan on mailing a letter. Same can be applied with phone calls. 
 
 
-### Deliverables
+#### Problem statement:
 
-The deliverable for this project will be three components:
+**Can we use machine learning to segment and rank accounts by likelihood of payment using historical accounts?**
 
-1. A **Jupyter notebook** for a presentation.  This will end up being the readme on your github. 
-  * The Jupyter notebook will have two components:
-    1. An **_Abstract_** section that briefly explains your problem, your methodology, and your findings, and business recommendations as a result of your findings. This section should be 1-2 paragraphs long.  
-    2. The technical analysis for a data science audience. This detailed technical analysis should explicitly follow a Data Science Process as outlined in the previous section. It should be well-formatted and organized, and should contain all code, visualizations, and detailed explanations/analysis.
-2. A **blog post** showcasing your project, with a focus on your methodology and findings. A well-written blog post about your project will probably be the first thing most recruiters and hiring managers will see, so really take the time to polish up this blog post and explain your project, methodology, and findings/business recommendations in a clear, concise manner. This blog post should cover everything important about your project, but remember that your audience for this blog post will largely be non-technical. Your blog post should definitely contain visualizations, code snippets, and anything else you find important, but don't get bogged down trying to explain highly technical concepts. Your blog post should provide a link to the GitHub repo containing your actual project, for people that want to really dive into the technical aspects of your project.
-3. A **video walkthrough** of your non-technical presentation. Some common video recording tools used are Zoom, Quicktime, and Nimbus. After you record your presentation, publish it on a service like YouTube or Google Drive, you will need a link to the video to submit your project.
+# Overview
+___
+We knew prior to starting this project that this was a difficult task to take on. We found this to be true, especially during our modeling stage due to extreme data imbalance. During our process, we exhausted our efforts in attempt to reduce imbalanced data, and still did not receive "good" results. We "predicted" this would be the case due to the nature of the dataset i.e. business. Therefore, we utilized multiple machine learning models to exploit features deemed most important, and derived a scoring sytem in order to segement and rank accounts by likehood of payments using historical successes... Which then can be used to prioritize accounts and increase efficiency. As we walk through the README, you'll notice we scrubbed and explore our data in multiple places, and not just at the begining, but the work flow will be consistent with our OSEMiN method. 
+
+# Obtain
+---
+**This dataset consist of 5 files:**
+- `DB_Accounts_2012-2015.txt` : contains account numbers and account specifics 
+- `DB_Splits.txt` : contains payment information 
+- `DB_Entities.txt` : contains entity address information 
+- `DB_Purchases.txt` : contains account balances purchases and descriptive portfolio information
+- `uszips.csv`: contains zip code based economic data 
+
+The final dataset used consist of **12.7 million records with 46 columns.** 
+- **13 categorical** and **33 continuous** features
+
+# Scrub 
+---
+During this process, we completed most of our feature engineering. We started with cleaning and merging our first of many datasets in our `Cleaning.ipynb`. After modeling, we then created our scoring/grading system in our `Scoring System.ipynb`.
+
+# EDA 
+___ 
+Our exploritory data analysis stage is one of the most opended and one of the most important aspect of the process. During our EDA, we will ask questions about our data and will either find a quick answer or further our our analysis which often results in pulling more data, and/or combining data, which means returning to previous steps. Some questions we'd like to answer to begin with: 
+
+- What is the breakdown between payers and non-payers? 
+- Are there any correlation between certain features and our target? 
+- Are the numerical features evenly distributed? 
+
+## Gather Sense of Our Data: 
+The first thing we must do is gather a sense of our data. 
+
+### Highlights: 
+- There are 12,713,917 total accounts and only 556,536 accounts paid in full or settled (considered - paid) 
+- We have a total of 46 columns 
+
+#### What is the breakdown between payers and non-payers? 
+95.63% are non-payers and only 4.37% are payers
+
+<img src='img_class_dist.png'>
+
+### Are there any correlation between certain features and our target?
+We want to see if there are any features that influence `Paid` heavily. As the heatmap below shows, there aren't any features that correlates highly with our target. We also used boxplots to get a better understanding of the distribution of these features. 
 
 
-### Final Project Proposals (2 project ideas)
+<img src='img_heatmap.png'>
 
-Selecting the right topic and selecting a problem with the appropriate scope can make or break a good project before you even begin. When starting, try to think up at least 2 different project ideas to explore that you can discuss with your instructor. Consider the following questions when coming up with your project. 
+---
 
-#### Project Ideation Questions
+<img src='img_boxplot.png'>
 
-1. What question/questions are you trying to solve?
-  * What are the outcomes you think you will find (could use mutually exclusive collectively exhaustive for this)? Why do they matter?
-  * How would a person or business take action upon learning the results of your project? How will your findings be _useful_?
-  * What version this question would allow me to find an answer in 2-3 days?
-  * What version of this question would allow me/motivate me to work on this problem even after completing Flatiron School?
+#### Are the numerical features evenly distributed? 
 
-2. What are some data sources that would allow you to answer this?
-  * What is the ideal data you would hope to gather to answer this question?  
-  * Potentially missing data, that could cause omitted variable bias?
-4. Is this a classification task? A regression task? Both?
-5. What are the challenges or obstacles you foresee with this project?
-6. What are your next steps moving forward?
+**Checking our numerical feature(s) distribution: Payers vs. Non-Payer**: As the image shows below, our numerical feature(s) distribution between payers and non-payers look very similar. We predict 
 
-### Example Student Project
+<img src= 'img_pay_non_dist.png'>
 
-To give you a frame of reference, take a look at this amazing [technical report](https://github.com/paulinaczheng/twitter_flu_tracking) from a previous student that used tweet data to predict the weekly number of flu cases during flu season. Pay attention to how well structured the project is, and how much she relies on great visualizations to tell her story for her. Your explanations don't have to be wordy--a visualization is worth a thousand words!
+### Summary: 
+- Our data is highly imbalance between payers and non-payers. 
+- Our distribution of features between the two classes are pretty even. 
+- There really isn't any one feature that correlates with our target. 
 
-# Summary
+From our initial EDA, we concluded that our features, has no direct correlations with our target variable. We predicted this might be the case due to our heavily imbalanced data.
 
-The Capstone Project and project review are the most critical part of the program. They give you a chance to both bring together all the skills you've learned into realistic projects and to practice key "business judgement" and communication skills that you otherwise might not get as much practice with. Most importantly, they provide employers with a very strong signal about your technical abilities, and allow you to show the world what an amazing Data Scientist you've become!
+# Preparing Our Data
+--- 
+We assume our models will have a difficult time differentiating our classes due to high data imbalance. Knowing this, we implemented "**random under sampling**", which consists of removing data in order to have a more balanced dataset, and avoiding our models to overfitting (as you'll see below). 
 
-The projects are serious and important. They are not graded, but they can be passed and they can be failed. Take the project seriously, put the time in, ask for help from your peers or instructors early and often if you need it, and treat the review as a job interview and you'll do great. We're rooting for you to succeed and we're only going to ask you to take a review again if we believe that you need to. We'll also provide open and honest feedback so you can improve as quickly and efficiently as possible.
 
-We don't expect you to remember all of the terms or to get all of the answers right. If in doubt, be honest. If you don't know something, say so. If you can't remember it, just say so. It's very unusual for someone to complete a project review without being asked a question they're unsure of, we know you might be nervous which may affect your performance. Just be as honest, precise and focused as you can be, and you'll do great!
+- Orginal dataset: **96%** Non-Payers & **4%** Payers 
+- Random Under Sampling: **50%** Non-Payers & **50%** Payers
 
-## Submitting your Project
+To avoid contamiation of data during our model training, we used a percentage our data, and created a randomly generated subset for each of our dataset and held out a portion of our data for testing. 
 
-You’re almost done! In order to submit your project for review, include the following links to your work in the corresponding fields on the right-hand side of Learn.
+**Note:** An issue with "random under sampling" is the information loss, which risk our models to be less accurate. 
 
-1. **GitHub Repo:** Now that you’ve completed your project in Jupyter Notebooks, push your work to GitHub and paste that link to the right. (If you need help doing so, review the resources [here](https://docs.google.com/spreadsheets/d/1CNGDhjcQZDRx2sWByd2v-mgUOjy13Cd_hQYVXPuzEDE/edit#gid=0).)
-_Reminder: Make sure to also add and commit a pdf of your non-technical presentation to the repository with a file name of presentation.pdf._
-2. **Blog Post:** Include a link to your blog post.
-3. **Record Walkthrough:** Include a link to your video walkthrough.
+# Model 
+___
 
-Hit "I'm done" to wrap it up. You will receive an email in order to schedule your review with your instructor.
+## [Part I]()
+___
+
+### Dimensionality Reduction and Clustering: 
+Here we'll be using some unsupervised algorithms in attempt to reduce dimensionality. 
+- [t-SNE](https://towardsdatascience.com/an-introduction-to-t-sne-with-python-example-5a3a293108d1): Non-linear technique for data exploration and visualizing high-dimensional data. Developed in 2008.
+- PCA: Linear dimension reduction techique that seeks to maximize variance and preserves large pairwise distance. Developed in 1933. 
+- Truncated Singular Value Decomposition (SVD): Similar to PCA, but the factorization is done on the data matrix vs. PCA, where factorization is done on the covariance matrix.
+
+### Summary: 
+- Even after balancing our data, the algorithms failed to accurately cluster the cases (payers vs. non-payers) 
+- This gives us an indication that further predictive models will perform poorly in identifying the classes. 
+
+#### Imbalanced Dataset Clustering:
+<img src='img_dim_redct.png'>
+
+#### Balanced Dataset 50/50 Clustring:
+<img src='img_dim_redct_50_50.png'>
+
+## [Part II]()
+___
+
+### Classifiers: 
+In this section we'll train four types of classifiers to see which will be more effective in detecting if someone is a payer or not. We ran our models using two different datasets. The original highly imbalance data, and a **Random under-sampling** dataset, which consists removing data to create a distribution of 50/50 payers and non-payers. Our initial models with the imbalance data had awesome/near perfection scores. This is due to the nature of our imbalance data, with our models identifying 96% of each accounts as "non-payers" i.e. overfitting. 
+
+### Summmary:
+- **SVM (support vector machine)** classifier has the highest accuracy of the four, with Logistic Regression and Random Forest being a close second place. 
+- **GridsearchCV** is used to determine the parameters that gives us the best predictive score. 
+- SVM has the best **ROC score**, meaning that SVM identified payers from the non-payers better than the other three algorithms. 
+
+### Learning Curves: 
+- The wider the gap between the training score and the cross validation score, the more likely your model is **overfitting**, i.e. **high variance**.
+- If the score is low for both, this indicates that our model is **underfitting** i.e. **high bias**.
+- SVC showed the best score score with 67.5% 
+
+___
+#### Score:
+<img src='score.png'>
+
+#### ROC Curve:
+___
+#### Imbalanced Dataset 
+<img src= 'img_ROC_curve.png'>
+
+#### Balanced Dataset
+<img src='img_ROC_curve50_50.png'>
+
+#### Learning Curve: Balanced Dataset
+___ 
+         
+<img src='img_learning_curve50_50.png'>
+
+### Confusion Matrix: 
+---
+**Positive/Negative:** Type of Class (label) [0, 1] True/False: Correctly or Incorrectly classified by the model.
+
+- **True Negatives** (Top-Left Square): This is the number of correct classifications of the Non-Payer class. 
+- **False Negatives** (Top-Right Square): This is the number of incorrect classifications of the Non-Payer class. 
+- **False Positives** (Bottom-Left Square): This is the number of incorrect classifications of the Payer class 
+- **True Positives** (Bottom-Right Square): This is the number of correct classifications of the Payer class.
+
+### Summary: 
+- **Classification Models**: The models that performed the best were **logisitic regression** and **support vector classifier (SVM)**. 
+- Our over all precision/recall score is not great, but better (not overfitting) vs. our imbalanced dataset. 
+
+<img src='img_conf_mtrx_50_50models.png'>
+<img src='class_report.png'>
+
+## [Part III]()
+--- 
+### Neural Networks:
+In this section we will implement a simple Neural Network with two hidden layers in order to see which of the two logistic regressions models we implemented in the (undersample or oversample(SMOTE)) has a better accuracy for detecting payers and non-payers. 
+
+- We will use our **random undersampled** subset and our **SMOTE** dataset in order to predict to predict the final result using the original testing dataset. 
+- **Neural Network**: We composed a neural network which consists of two hidden layers with 46 nodes per layer (number of features) and an output node composed of two possible outcomes 0 or 1 ( Non-Payer and Payer)
+- **Other Features**:
+    - Learning rate: 0.001
+    - Optimizer: AdamOptimizer
+    - Activation function: `'relu'` and `'sigmoid'` for the output
+    - Loss: `'sparse_catergorical_crossentropy'`, which provides the probabiliyt wheter an instance is non-payer or payer
+    
+
+### Goal: 
+Our main goal is to explore how our simple neural network behaves with our two datesets and see if they are able to predict accurately between the two classes (payer and non-payer). 
+    
+### Summary: 
+- Using SMOTE on our imbalanced data helped with identifying our imbalanced labels. 
+- Our simple neural network was able to identify "Payer" class better than our other models but at at the cost of increased **missed identification** of our True Positive or "Non-Payer", meaning our SMOTE NN missclassifed our "Non-Payers" as "Payers". Which bring us to a similar issue in which we hope to disclose. 
+
+### Confusion Matrix:
+---
+#### Random Under Sample:
+<img src='img_neural_mtrx50_50.png'>
+
+#### SMOTE:
+<img src= 'img_neural_mtrx_SMOTE.png'>
+
+# Conclusion
+--- 
+We concluded that our models performed better than a 50/50 coinflip, by an average of 10-15% more. We are disatified with the scores we received. However we utilized our findings to create a scoring system for collection agencies to rank/prioritize accounts by likelihood of payment.
+
+### Summary: 
+- We were able to use our scoring system i.e. `Grade` in tandem with our findings during our EDA, to segment accounts and target those who has a higher likelihood of payment. 
+- Grouping by `Grade`, `Age_range`, and `Income_level`, we were able to identify accounts with a higher `Percent_Paid`, i.e. likelihood of payment. 
+
+### Next Steps: 
+- Scrape zip code based consumer behavioral data (if possible) and combine with our current features.
+- Use sensitive information i.e. ss#, gender, sex and race. 
+- We would like to create a pipeline from receiving our data, OSEMiN process (clean,modeling, ect.), and create a user friendly dash board that collection agencies can utilize. 
+- We also would like to compare our scoring system i.e. "likelihood" of payment vs. other scoring systems in the market place. 
+
+### Scoring System:
+- We utilized our models' feature importance to "score" our categorical features.With `Grade` `A` being the most likelihood of payment and `F` with the least likelihood of payment.
+- `Grade`: 
+    - A > Aa > Aaa
+    - B > Bb > Bbb
+    - C > Cc
+    - D > Dd
+    - F 
+
+
+
+#### Grade Breakdown: 
+<img src='grade_1.png'>
+
+#### Grade `A` Breakdown - Group by `Grade`, `Age_range`, and `Income_level`:
+<img src='grade_2.png'>
