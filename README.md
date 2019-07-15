@@ -2,7 +2,6 @@
 
 # README
 # Abstract
----
 Collection agencies spends millions of dollars sending letters and making phone calls in order to potentially receive some sort of payment from the debtor. Most of these companies are blindly sending letters and making phone calls to make an effort to retain some form of payment. Data science methods will be applied in attempt to increase right party contact, filter and prioritize accounts, in hopes to increasing collection efficiency and decreasing operational cost. 
 
 
@@ -14,11 +13,9 @@ Collection agencies spends millions of dollars sending letters and making phone 
 **Can we use machine learning to segment and rank accounts by likelihood of payment using historical accounts?**
 
 # Overview
-___
 We knew prior to starting this project that this was a difficult task to take on. We found this to be true, especially during our modeling stage due to extreme data imbalance. During our process, we exhausted our efforts in attempt to reduce imbalanced data, and still did not receive "good" results. We "predicted" this would be the case due to the nature of the dataset i.e. business. Therefore, we utilized multiple machine learning models to exploit features deemed most important, and derived a scoring sytem in order to segement and rank accounts by likehood of payments using historical successes... Which then can be used to prioritize accounts and increase efficiency. As we walk through the README, you'll notice we scrubbed and explore our data in multiple places, and not just at the begining, but the work flow will be consistent with our OSEMiN method. 
 
 # Obtain
----
 **This dataset consist of 5 files:**
 - `DB_Accounts_2012-2015.txt` : contains account numbers and account specifics 
 - `DB_Splits.txt` : contains payment information 
@@ -30,11 +27,9 @@ The final dataset used consist of **12.7 million records with 46 columns.**
 - **13 categorical** and **33 continuous** features
 
 # Scrub 
----
 During this process, we completed most of our feature engineering. We started with cleaning and merging our first of many datasets in our `Cleaning.ipynb`. After modeling, we then created our scoring/grading system in our `Scoring System.ipynb`.
 
 # EDA 
-___ 
 Our exploritory data analysis stage is one of the most opended and one of the most important aspect of the process. During our EDA, we will ask questions about our data and will either find a quick answer or further our our analysis which often results in pulling more data, and/or combining data, which means returning to previous steps. Some questions we'd like to answer to begin with: 
 
 - What is the breakdown between payers and non-payers? 
@@ -77,7 +72,6 @@ We want to see if there are any features that influence `Paid` heavily. As the h
 From our initial EDA, we concluded that our features, has no direct correlations with our target variable. We predicted this might be the case due to our heavily imbalanced data.
 
 # Preparing Our Data
---- 
 We assume our models will have a difficult time differentiating our classes due to high data imbalance. Knowing this, we implemented "**random under sampling**", which consists of removing data in order to have a more balanced dataset, and avoiding our models to overfitting (as you'll see below). 
 
 
@@ -89,9 +83,8 @@ To avoid contamiation of data during our model training, we used a percentage ou
 **Note:** An issue with "random under sampling" is the information loss, which risk our models to be less accurate. 
 
 # Model 
-___
 
-## [Part I]()
+## [Part I](https://github.com/MyNameisBram/Capstone-Project/blob/master/Model_part2.ipynb)
 ___
 
 ### Dimensionality Reduction and Clustering: 
@@ -110,7 +103,7 @@ Here we'll be using some unsupervised algorithms in attempt to reduce dimensiona
 #### Balanced Dataset 50/50 Clustring:
 <img src='img_dim_redct_50_50.png'>
 
-## [Part II]()
+## [Part II](https://github.com/MyNameisBram/Capstone-Project/blob/master/Model_part2.ipynb)
 ___
 
 ### Classifiers: 
@@ -159,7 +152,7 @@ ___
 <img src='img_conf_mtrx_50_50models.png'>
 <img src='class_report.png'>
 
-## [Part III]()
+## [Part III](https://github.com/MyNameisBram/Capstone-Project/blob/master/Model_part2.ipynb)
 --- 
 ### Neural Networks:
 In this section we will implement a simple Neural Network with two hidden layers in order to see which of the two logistic regressions models we implemented in the (undersample or oversample(SMOTE)) has a better accuracy for detecting payers and non-payers. 
@@ -202,7 +195,7 @@ We concluded that our models performed better than a 50/50 coinflip, by an avera
 - We would like to create a pipeline from receiving our data, OSEMiN process (clean,modeling, ect.), and create a user friendly dash board that collection agencies can utilize. 
 - We also would like to compare our scoring system i.e. "likelihood" of payment vs. other scoring systems in the market place. 
 
-### Scoring System:
+### [Scoring System:](https://github.com/MyNameisBram/Capstone-Project/blob/master/Scoring%20System.ipynb)
 - We utilized our models' feature importance to "score" our categorical features.With `Grade` `A` being the most likelihood of payment and `F` with the least likelihood of payment.
 - `Grade`: 
     - A > Aa > Aaa
