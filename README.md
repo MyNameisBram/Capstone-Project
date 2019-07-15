@@ -1,6 +1,6 @@
 
 
-# README
+# Efficient Revenue Recovery Using Machine Learning 
 # Abstract
 Collection agencies spends millions of dollars sending letters and making phone calls in order to potentially receive some sort of payment from the debtor. Most of these companies are blindly sending letters and making phone calls to make an effort to retain some form of payment. Data science methods will be applied in attempt to increase right party contact, filter and prioritize accounts, in hopes to increasing collection efficiency and decreasing operational cost. 
 
