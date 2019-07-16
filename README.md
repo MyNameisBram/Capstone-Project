@@ -109,7 +109,7 @@ ___
 ### Classifiers: 
 In this section we'll train four types of classifiers to see which will be more effective in detecting if someone is a payer or not. We ran our models using two different datasets. The original highly imbalance data, and a **Random under-sampling** dataset, which consists removing data to create a distribution of 50/50 payers and non-payers. Our initial models with the imbalance data had awesome/near perfection scores. This is due to the nature of our imbalance data, with our models identifying 96% of each accounts as "non-payers" i.e. overfitting. 
 
-### Summmary:
+### Summary:
 - **SVM (support vector machine)** classifier has the highest accuracy of the four, with Logistic Regression and Random Forest being a close second place. 
 - **GridsearchCV** is used to determine the parameters that gives us the best predictive score. 
 - SVM has the best **ROC score**, meaning that SVM identified payers from the non-payers better than the other three algorithms. 
