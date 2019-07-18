@@ -84,7 +84,6 @@ To avoid contamiation of data during our model training, we used a percentage ou
 # Model 
 
 ## [Part I](https://github.com/MyNameisBram/Capstone-Project/blob/master/Model_part2.ipynb)
-___
 
 ### Dimensionality Reduction and Clustering: 
 Here we'll be using some unsupervised algorithms in attempt to reduce dimensionality. 
@@ -103,7 +102,6 @@ Here we'll be using some unsupervised algorithms in attempt to reduce dimensiona
 <img src='images/img_dim_redct_50_50.png'>
 
 ## [Part II](https://github.com/MyNameisBram/Capstone-Project/blob/master/Model_part2.ipynb)
-___
 
 ### Classifiers: 
 In this section we'll train four types of classifiers to see which will be more effective in detecting if someone is a payer or not. We ran our models using two different datasets. The original highly imbalance data, and a **Random under-sampling** dataset, which consists removing data to create a distribution of 50/50 payers and non-payers. Our initial models with the imbalance data had awesome/near perfection scores. This is due to the nature of our imbalance data, with our models identifying 96% of each accounts as "non-payers" i.e. overfitting. 
@@ -149,10 +147,11 @@ ___
 - Our over all precision/recall score is not great, but better (not overfitting) vs. our imbalanced dataset. 
 
 <img src='images/img_conf_mtrx_50_50models.png'>
+
 <img src='images/class_report.png'>
 
 ## [Part III](https://github.com/MyNameisBram/Capstone-Project/blob/master/Model_part2.ipynb)
---- 
+
 ### Neural Networks:
 In this section we will implement a simple Neural Network with two hidden layers in order to see which of the two logistic regressions models we implemented in the (undersample or oversample(SMOTE)) has a better accuracy for detecting payers and non-payers. 
 
