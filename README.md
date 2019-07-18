@@ -46,23 +46,23 @@ The first thing we must do is gather a sense of our data.
 #### What is the breakdown between payers and non-payers? 
 95.63% are non-payers and only 4.37% are payers
 
-<img src='img_class_dist.png'>
+<img src='images/img_class_dist.png'>
 
 ### Are there any correlation between certain features and our target?
 We want to see if there are any features that influence `Paid` heavily. As the heatmap below shows, there aren't any features that correlates highly with our target. We also used boxplots to get a better understanding of the distribution of these features. 
 
 
-<img src='img_heatmap.png'>
+<img src='images/img_heatmap.png'>
 
 ---
 
-<img src='img_boxplot.png'>
+<img src='images/img_boxplot.png'>
 
 #### Are the numerical features evenly distributed? 
 
 **Checking our numerical feature(s) distribution: Payers vs. Non-Payer**: As the image shows below, our numerical feature(s) distribution between payers and non-payers look very similar. 
 
-<img src= 'img_pay_non_dist.png'>
+<img src= 'images/img_pay_non_dist.png'>
 
 ### Summary: 
 - Our data is highly imbalanced between payers and non-payers. 
@@ -98,10 +98,10 @@ Here we'll be using some unsupervised algorithms in attempt to reduce dimensiona
 - This gives us an indication that further predictive models will perform poorly in identifying the classes. 
 
 #### Imbalanced Dataset Clustering:
-<img src='img_dim_redct.png'>
+<img src='images/img_dim_redct.png'>
 
 #### Balanced Dataset 50/50 Clustring:
-<img src='img_dim_redct_50_50.png'>
+<img src='images/img_dim_redct_50_50.png'>
 
 ## [Part II](https://github.com/MyNameisBram/Capstone-Project/blob/master/Model_part2.ipynb)
 ___
@@ -121,20 +121,20 @@ In this section we'll train four types of classifiers to see which will be more 
 
 ___
 #### Score:
-<img src='score.png'>
+<img src='images/score.png'>
 
 #### ROC Curve:
 ___
 #### Imbalanced Dataset 
-<img src= 'img_ROC_curve.png'>
+<img src= 'images/img_ROC_curve.png'>
 
 #### Balanced Dataset
-<img src='img_ROC_curve50_50.png'>
+<img src='images/img_ROC_curve50_50.png'>
 
 #### Learning Curve: Balanced Dataset
 ___ 
          
-<img src='img_learning_curve50_50.png'>
+<img src='images/img_learning_curve50_50.png'>
 
 ### Confusion Matrix: 
 ---
@@ -149,8 +149,8 @@ ___
 - **Classification Models**: The models that performed the best were **logisitic regression** and **support vector classifier (SVM)**. 
 - Our over all precision/recall score is not great, but better (not overfitting) vs. our imbalanced dataset. 
 
-<img src='img_conf_mtrx_50_50models.png'>
-<img src='class_report.png'>
+<img src='images/img_conf_mtrx_50_50models.png'>
+<img src='images/class_report.png'>
 
 ## [Part III](https://github.com/MyNameisBram/Capstone-Project/blob/master/Model_part2.ipynb)
 --- 
@@ -176,10 +176,10 @@ Our main goal is to explore how our simple neural network behaves with our two d
 ### Confusion Matrix:
 ---
 #### Random Under Sample:
-<img src='img_neural_mtrx50_50.png'>
+<img src='images/img_neural_mtrx50_50.png'>
 
 #### SMOTE:
-<img src= 'img_neural_mtrx_SMOTE.png'>
+<img src= 'images/img_neural_mtrx_SMOTE.png'>
 
 # Conclusion
 --- 
@@ -207,7 +207,7 @@ We concluded that our models performed better than a 50/50 coinflip, by an avera
 
 
 #### Grade Breakdown: 
-<img src='grade_1.png'>
+<img src='images/grade_1.png'>
 
 #### Grade `A` Breakdown - Group by `Grade`, `Age_range`, and `Income_level`:
-<img src='grade_2.png'>
+<img src='images/grade_2.png'>
