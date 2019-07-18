@@ -26,7 +26,7 @@ The final dataset used consist of **12.7 million records with 46 columns.**
 - **13 categorical** and **33 continuous** features
 
 # Scrub 
-During this process, we completed most of our feature engineering. We started with cleaning and merging our first of many datasets in our `Cleaning.ipynb`. After modeling, we then created our scoring/grading system in our `Scoring System.ipynb`.
+During this process, we completed most of our feature engineering. We started with cleaning and merging our first of many datasets in our [`Cleaning.ipynb`](https://github.com/MyNameisBram/Capstone-Project/blob/master/Cleaning.ipynb). After modeling, we then created our scoring/grading system in our [`Scoring System.ipynb`](https://github.com/MyNameisBram/Capstone-Project/blob/master/Scoring%20System.ipynb).
 
 # EDA 
 Our exploritory data analysis stage is one of the most opended and one of the most important aspect of the process. During our EDA, we will ask questions about our data and will either find a quick answer or further our our analysis which often results in pulling more data, and/or combining data, which means returning to previous steps. Some questions we'd like to answer to begin with: 
